@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -75,8 +75,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -121,5 +120,33 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-jetbrains-mono), "Courier New", monospace;
   }
+}
+
+/* Ensure monospace font is applied everywhere */
+* {
+  font-family: var(--font-jetbrains-mono), "Courier New", monospace !important;
+}
+
+/* Terminal-like styling */
+.terminal-text {
+  font-family: var(--font-jetbrains-mono), "Courier New", monospace;
+  letter-spacing: 0.025em;
+}
+
+/* Typewriter cursor animation */
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.typewriter-cursor {
+  animation: blink 1s infinite;
 }

@@ -94,10 +94,10 @@ interface Translations {
       description: string[]
       skills: {
         title: string
-        technical: string[]
         business: string[]
-        tools: string[]
         methodologies: string[]
+        technical: string[]
+        tools: string[]
       }
     }
     experience: {
@@ -505,7 +505,7 @@ const TypewriterText = ({ text, speed = 50, className = "" }: { text: string; sp
   return (
     <span className={className}>
       {displayText}
-      {!isComplete && <span className="animate-pulse">|</span>}
+      {!isComplete && <span className="typewriter-cursor">|</span>}
     </span>
   )
 }
@@ -797,7 +797,7 @@ export default function DarkITPortfolio() {
                     <CardContent className="p-6">
                       <h3 className="text-lg font-medium text-white mb-3">{cert.name}</h3>
                       <div className="flex justify-between items-center">
-                        <p className="text-gray-300">{cert.issuer}</p>
+                        <p className="text-gray-400">{cert.issuer}</p>
                         <Badge variant="outline" className="border-gray-600 text-gray-300 bg-black">
                           {cert.year}
                         </Badge>
@@ -912,12 +912,12 @@ export default function DarkITPortfolio() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden font-mono">
+    <div className="min-h-screen bg-black text-white relative overflow-hidden terminal-text">
       {/* Animated Background */}
       <AnimatedBackground />
 
       {/* Left Sidebar - Fixed */}
-      <div className="w-80 bg-black border-r border-gray-800 p-8 fixed left-0 top-0 h-full overflow-y-auto z-10 font-mono">
+      <div className="w-80 bg-black border-r border-gray-800 p-8 fixed left-0 top-0 h-full overflow-y-auto z-10 terminal-text">
         <div className="text-center mb-8">
           <Image
             src="/professional-headshot.png"
@@ -943,7 +943,7 @@ export default function DarkITPortfolio() {
           <div className="space-y-3">
             <Link
               href="mailto:your.email@example.com"
-              className="flex items-center text-gray-400 hover:text-white transition-colors w-full p-3 rounded border border-gray-800 hover:border-gray-700"
+              className="flex items-center text-gray-400 hover:text-white transition-colors w-full p-3 rounded border border-gray-800/30"
             >
               <Mail className="w-5 h-5 mr-3" />
               <span className="text-sm">your.email@example.com</span>
