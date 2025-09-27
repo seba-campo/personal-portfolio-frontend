@@ -1,477 +1,91 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { MapPin, Download, Mail, Linkedin, Github, Globe, Calendar, ExternalLink } from "lucide-react"
-import Image from "next/image"
+import {
+  MapPin,
+  Mail,
+  Linkedin,
+  Github,
+  Calendar,
+  ExternalLink,
+  ArrowRight,
+  Download,
+  Code,
+  Database,
+  Users,
+} from "lucide-react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 type Language = "en" | "es"
-type ActiveTab = "about" | "experience" | "education" | "projects"
+type ActiveTab = "about" | "experience" | "education" | "projects" | "blog"
 
-interface Translations {
-  en: {
-    sidebar: {
-      title: string
-      location: string
-      downloadCV: string
-      followMe: string
-    }
-    navigation: {
-      about: string
-      experience: string
-      education: string
-      projects: string
-    }
-    about: {
-      title: string
-      description: string[]
-      skills: {
-        title: string
-        technical: string[]
-        business: string[]
-        tools: string[]
-        methodologies: string[]
-      }
-    }
-    experience: {
-      title: string
-      jobs: Array<{
-        title: string
-        company: string
-        period: string
-        location: string
-        description: string[]
-        achievements: string[]
-      }>
-    }
-    education: {
-      title: string
-      degrees: Array<{
-        degree: string
-        institution: string
-        period: string
-        description: string
-      }>
-      certifications: Array<{
-        name: string
-        issuer: string
-        year: string
-      }>
-    }
-    projects: {
-      title: string
-      viewProject: string
-      items: Array<{
-        name: string
-        description: string
-        technologies: string[]
-        role: string
-        status: string
-        achievements: string[]
-        image: string
-        imageAlt: string
-      }>
-    }
-  }
-  es: {
-    sidebar: {
-      title: string
-      location: string
-      downloadCV: string
-      followMe: string
-    }
-    navigation: {
-      about: string
-      experience: string
-      education: string
-      projects: string
-    }
-    about: {
-      title: string
-      description: string[]
-      skills: {
-        title: string
-        business: string[]
-        methodologies: string[]
-        technical: string[]
-        tools: string[]
-      }
-    }
-    experience: {
-      title: string
-      jobs: Array<{
-        title: string
-        company: string
-        period: string
-        location: string
-        description: string[]
-        achievements: string[]
-      }>
-    }
-    education: {
-      title: string
-      degrees: Array<{
-        degree: string
-        institution: string
-        period: string
-        description: string
-      }>
-      certifications: Array<{
-        name: string
-        issuer: string
-        year: string
-      }>
-    }
-    projects: {
-      title: string
-      viewProject: string
-      items: Array<{
-        name: string
-        description: string
-        technologies: string[]
-        role: string
-        status: string
-        achievements: string[]
-        image: string
-        imageAlt: string
-      }>
-    }
-  }
-}
+const projects = [
+  {
+    title: "E-commerce Dashboard",
+    description: "Dashboard de análisis para tienda online con métricas en tiempo real",
+    tech: ["React", "Node.js", "PostgreSQL"],
+    link: "#",
+    status: "Completado",
+  },
+  {
+    title: "API Gateway",
+    description: "Gateway centralizado para microservicios con autenticación",
+    tech: ["FastAPI", "Docker", "Redis"],
+    link: "#",
+    status: "En desarrollo",
+  },
+  {
+    title: "CRM System",
+    description: "Sistema de gestión de clientes con automatización",
+    tech: ["Vue.js", "Python", "MongoDB"],
+    link: "#",
+    status: "Completado",
+  },
+]
 
-const translations: Translations = {
-  en: {
-    sidebar: {
-      title: "Functional Analyst",
-      location: "Your City, Country",
-      downloadCV: "Download CV",
-      followMe: "Follow me",
-    },
-    navigation: {
-      about: "About",
-      experience: "Experience",
-      education: "Education",
-      projects: "Projects",
-    },
-    about: {
-      title: "About Me",
-      description: [
-        "Functional Analyst with 5+ years of experience delivering impactful web applications and digital solutions used by thousands of users. Expert in bridging business requirements with technical implementation, leading cross-functional teams from conception to deployment.",
-        "Demonstrated success in API design, database architecture, and user experience optimization. Proven track record in agile methodologies, translating complex business needs into scalable technical solutions that drive measurable business growth.",
-      ],
-      skills: {
-        title: "Professional Skills",
-        business: [
-          "Requirements Gathering & Analysis",
-          "Stakeholder Management",
-          "Process Optimization",
-          "Business Process Mapping",
-          "Risk Assessment & Mitigation",
-          "Cross-functional Team Leadership",
-        ],
-        methodologies: [
-          "Agile & Scrum",
-          "Lean Methodology",
-          "Design Thinking",
-          "User-Centered Design",
-          "DevOps Practices",
-          "SDLC Management",
-        ],
-        technical: ["React", "Node.js", "JavaScript", "PostgreSQL", "MongoDB", "AWS", "Docker", "Python"],
-        tools: ["JIRA", "Figma", "Git", "Postman", "Tableau", "Confluence", "Azure", "Redis"],
-      },
-    },
-    experience: {
-      title: "Professional Experience",
-      jobs: [
-        {
-          title: "Senior Functional Analyst",
-          company: "Tech Solutions Inc.",
-          period: "2021 - Present",
-          location: "Remote",
-          description: [
-            "Lead functional analysis for enterprise-level web applications serving 50K+ users",
-            "Collaborate with product managers and engineering teams to define technical requirements",
-            "Design and document API specifications and database schemas",
-          ],
-          achievements: [
-            "Improved system performance by 40% through database optimization",
-            "Reduced development time by 25% with standardized requirement documentation",
-            "Successfully launched 3 major product features ahead of schedule",
-          ],
-        },
-        {
-          title: "Functional Analyst",
-          company: "Digital Innovations Ltd.",
-          period: "2019 - 2021",
-          location: "Your City",
-          description: [
-            "Analyzed business processes and translated requirements into technical specifications",
-            "Managed stakeholder communication and facilitated requirement gathering sessions",
-            "Supported UAT and deployment processes",
-          ],
-          achievements: [
-            "Streamlined reporting processes, saving 15 hours/week",
-            "Implemented automated testing procedures reducing bugs by 30%",
-            "Led migration project affecting 10K+ user accounts",
-          ],
-        },
-      ],
-    },
-    education: {
-      title: "Education & Certifications",
-      degrees: [
-        {
-          degree: "Bachelor of Computer Science",
-          institution: "University Name",
-          period: "2015 - 2019",
-          description: "Specialized in Information Systems and Database Management",
-        },
-        {
-          degree: "Master of Business Administration",
-          institution: "Business School",
-          period: "2020 - 2022",
-          description: "Focus on Technology Management and Digital Transformation",
-        },
-      ],
-      certifications: [
-        {
-          name: "Certified Business Analysis Professional (CBAP)",
-          issuer: "IIBA",
-          year: "2022",
-        },
-        {
-          name: "AWS Solutions Architect Associate",
-          issuer: "Amazon Web Services",
-          year: "2023",
-        },
-        {
-          name: "Scrum Master Certified",
-          issuer: "Scrum Alliance",
-          year: "2021",
-        },
-      ],
-    },
-    projects: {
-      title: "Featured Projects",
-      viewProject: "Visit",
-      items: [
-        {
-          name: "AnalyticsHub.io",
-          description:
-            "AI-powered analytics platform for e-commerce operations, integrating multiple data sources and providing real-time insights for business decisions.",
-          technologies: ["React", "Node.js", "PostgreSQL", "AWS", "D3.js"],
-          role: "Lead Functional Analyst",
-          status: "Live",
-          achievements: [
-            "Improved decision-making speed by 60%",
-            "Integrated 5+ external APIs",
-            "Supported $2M+ in revenue tracking",
-          ],
-          image: "/web-application-dashboard.png",
-          imageAlt: "E-Commerce Analytics Dashboard",
-        },
-        {
-          name: "CRMPro.com",
-          description:
-            "Customer relationship management system handling 10K+ daily interactions with advanced automation and user experience optimization.",
-          technologies: ["Vue.js", "Python", "MongoDB", "Redis"],
-          role: "Senior Analyst",
-          status: "Deployed",
-          achievements: [
-            "Reduced customer response time by 50%",
-            "Automated 80% of routine tasks",
-            "Improved customer satisfaction by 35%",
-          ],
-          image: "/mobile-app-interface.png",
-          imageAlt: "Customer Management System Interface",
-        },
-        {
-          name: "APIGateway.dev",
-          description:
-            "Centralized API gateway serving multiple microservices across the organization with enhanced security and performance monitoring.",
-          technologies: ["FastAPI", "Docker", "Kubernetes", "Redis"],
-          role: "Technical Analyst",
-          status: "Production",
-          achievements: [
-            "Consolidated 15+ APIs into unified gateway",
-            "Improved API response time by 45%",
-            "Enhanced security with centralized authentication",
-          ],
-          image: "/data-visualization-dashboard.png",
-          imageAlt: "API Gateway Architecture Dashboard",
-        },
-      ],
-    },
+const blogPosts = [
+  {
+    title: "Cómo implementar un API Gateway escalable",
+    excerpt:
+      "Guía completa para diseñar y implementar un gateway de APIs que pueda manejar miles de requests por segundo...",
+    date: "2024-01-15",
+    readTime: "5 min",
+    tags: ["API", "Arquitectura", "DevOps"],
   },
-  es: {
-    sidebar: {
-      title: "Analista Funcional",
-      location: "Tu Ciudad, País",
-      downloadCV: "Descargar CV",
-      followMe: "Sígueme",
-    },
-    navigation: {
-      about: "Acerca",
-      experience: "Experiencia",
-      education: "Educación",
-      projects: "Proyectos",
-    },
-    about: {
-      title: "Acerca de Mí",
-      description: [
-        "Analista Funcional con más de 5 años de experiencia entregando aplicaciones web impactantes y soluciones digitales utilizadas por miles de usuarios. Experto en conectar requisitos de negocio con implementación técnica, liderando equipos multifuncionales desde la concepción hasta el despliegue.",
-        "Éxito demostrado en diseño de APIs, arquitectura de bases de datos y optimización de experiencia de usuario. Historial comprobado en metodologías ágiles, traduciendo necesidades complejas de negocio en soluciones técnicas escalables que impulsan el crecimiento empresarial medible.",
-      ],
-      skills: {
-        title: "Habilidades Profesionales",
-        business: [
-          "Recopilación y Análisis de Requisitos",
-          "Gestión de Stakeholders",
-          "Optimización de Procesos",
-          "Mapeo de Procesos de Negocio",
-          "Evaluación y Mitigación de Riesgos",
-          "Liderazgo de Equipos Multifuncionales",
-        ],
-        methodologies: [
-          "Agile y Scrum",
-          "Metodología Lean",
-          "Design Thinking",
-          "Diseño Centrado en el Usuario",
-          "Prácticas DevOps",
-          "Gestión SDLC",
-        ],
-        technical: ["React", "Node.js", "JavaScript", "PostgreSQL", "MongoDB", "AWS", "Docker", "Python"],
-        tools: ["JIRA", "Figma", "Git", "Postman", "Tableau", "Confluence", "Azure", "Redis"],
-      },
-    },
-    experience: {
-      title: "Experiencia Profesional",
-      jobs: [
-        {
-          title: "Analista Funcional Senior",
-          company: "Tech Solutions Inc.",
-          period: "2021 - Presente",
-          location: "Remoto",
-          description: [
-            "Lidero análisis funcional para aplicaciones web empresariales que sirven a más de 50K usuarios",
-            "Colaboro con gerentes de producto y equipos de ingeniería para definir requisitos técnicos",
-            "Diseño y documento especificaciones de APIs y esquemas de bases de datos",
-          ],
-          achievements: [
-            "Mejoré el rendimiento del sistema en un 40% mediante optimización de bases de datos",
-            "Reduje el tiempo de desarrollo en un 25% con documentación estandarizada de requisitos",
-            "Lancé exitosamente 3 características principales del producto antes de la fecha límite",
-          ],
-        },
-        {
-          title: "Analista Funcional",
-          company: "Digital Innovations Ltd.",
-          period: "2019 - 2021",
-          location: "Tu Ciudad",
-          description: [
-            "Analicé procesos de negocio y traduje requisitos en especificaciones técnicas",
-            "Gestioné comunicación con stakeholders y facilité sesiones de recopilación de requisitos",
-            "Apoyé procesos de UAT y despliegue",
-          ],
-          achievements: [
-            "Optimicé procesos de reporting, ahorrando 15 horas/semana",
-            "Implementé procedimientos de pruebas automatizadas reduciendo bugs en un 30%",
-            "Lideré proyecto de migración afectando más de 10K cuentas de usuario",
-          ],
-        },
-      ],
-    },
-    education: {
-      title: "Educación y Certificaciones",
-      degrees: [
-        {
-          degree: "Licenciatura en Ciencias de la Computación",
-          institution: "Nombre de Universidad",
-          period: "2015 - 2019",
-          description: "Especialización en Sistemas de Información y Gestión de Bases de Datos",
-        },
-        {
-          degree: "Maestría en Administración de Empresas",
-          institution: "Escuela de Negocios",
-          period: "2020 - 2022",
-          description: "Enfoque en Gestión de Tecnología y Transformación Digital",
-        },
-      ],
-      certifications: [
-        {
-          name: "Profesional Certificado en Análisis de Negocios (CBAP)",
-          issuer: "IIBA",
-          year: "2022",
-        },
-        {
-          name: "AWS Solutions Architect Associate",
-          issuer: "Amazon Web Services",
-          year: "2023",
-        },
-        {
-          name: "Scrum Master Certificado",
-          issuer: "Scrum Alliance",
-          year: "2021",
-        },
-      ],
-    },
-    projects: {
-      title: "Proyectos Destacados",
-      viewProject: "Visitar",
-      items: [
-        {
-          name: "AnalyticsHub.io",
-          description:
-            "Plataforma de análisis impulsada por IA para operaciones de e-commerce, integrando múltiples fuentes de datos y proporcionando insights en tiempo real para decisiones empresariales.",
-          technologies: ["React", "Node.js", "PostgreSQL", "AWS", "D3.js"],
-          role: "Analista Funcional Líder",
-          status: "En Vivo",
-          achievements: [
-            "Mejoré la velocidad de toma de decisiones en un 60%",
-            "Integré más de 5 APIs externas",
-            "Apoyé el seguimiento de más de $2M en ingresos",
-          ],
-          image: "/web-application-dashboard.png",
-          imageAlt: "Dashboard de Análisis E-Commerce",
-        },
-        {
-          name: "CRMPro.com",
-          description:
-            "Sistema de gestión de relaciones con clientes que maneja más de 10K interacciones diarias con automatización avanzada y optimización de experiencia de usuario.",
-          technologies: ["Vue.js", "Python", "MongoDB", "Redis"],
-          role: "Analista Senior",
-          status: "Desplegado",
-          achievements: [
-            "Reduje el tiempo de respuesta al cliente en un 50%",
-            "Automaticé el 80% de las tareas rutinarias",
-            "Mejoré la satisfacción del cliente en un 35%",
-          ],
-          image: "/mobile-app-interface.png",
-          imageAlt: "Interfaz del Sistema de Gestión de Clientes",
-        },
-        {
-          name: "APIGateway.dev",
-          description:
-            "Gateway de API centralizado que sirve múltiples microservicios en toda la organización con seguridad mejorada y monitoreo de rendimiento.",
-          technologies: ["FastAPI", "Docker", "Kubernetes", "Redis"],
-          role: "Analista Técnico",
-          status: "Producción",
-          achievements: [
-            "Consolidé más de 15 APIs en un gateway unificado",
-            "Mejoré el tiempo de respuesta de APIs en un 45%",
-            "Mejoré la seguridad con autenticación centralizada",
-          ],
-          image: "/data-visualization-dashboard.png",
-          imageAlt: "Dashboard de Arquitectura API Gateway",
-        },
-      ],
-    },
+  {
+    title: "Análisis funcional en proyectos ágiles",
+    excerpt: "Mejores prácticas para el análisis de requisitos en equipos que trabajan con metodologías ágiles...",
+    date: "2024-01-10",
+    readTime: "8 min",
+    tags: ["Agile", "Análisis", "Scrum"],
   },
-}
+  {
+    title: "Optimización de bases de datos PostgreSQL",
+    excerpt: "Técnicas avanzadas para mejorar el rendimiento de consultas y reducir los tiempos de respuesta...",
+    date: "2024-01-05",
+    readTime: "12 min",
+    tags: ["PostgreSQL", "Performance", "SQL"],
+  },
+]
+
+const skills = [
+  { name: "Análisis de Requisitos", icon: "📋", level: "Experto" },
+  { name: "React & Node.js", icon: "⚛️", level: "Avanzado" },
+  { name: "PostgreSQL", icon: "🐘", level: "Avanzado" },
+  { name: "Docker", icon: "🐳", level: "Intermedio" },
+  { name: "Scrum & Agile", icon: "🔄", level: "Experto" },
+  { name: "API Design", icon: "🔗", level: "Avanzado" },
+]
+
+const stats = [
+  { label: "Años de experiencia", value: "5+", icon: Calendar },
+  { label: "Proyectos completados", value: "25+", icon: Code },
+  { label: "Equipos liderados", value: "8", icon: Users },
+  { label: "APIs diseñadas", value: "15+", icon: Database },
+]
 
 // Typewriter Animation Hook
 const useTypewriter = (text: string, speed = 50) => {
@@ -505,7 +119,7 @@ const TypewriterText = ({ text, speed = 50, className = "" }: { text: string; sp
   return (
     <span className={className}>
       {displayText}
-      {!isComplete && <span className="typewriter-cursor">|</span>}
+      {!isComplete && <span className="animate-pulse">|</span>}
     </span>
   )
 }
@@ -581,428 +195,358 @@ const AnimatedBackground = () => {
   )
 }
 
-export default function DarkITPortfolio() {
-  const [activeTab, setActiveTab] = useState<ActiveTab>("about")
-  const [language, setLanguage] = useState<Language>("en")
+export default function SimplePortfolioBlog() {
+  const [activeSection, setActiveSection] = useState<"home" | "portfolio" | "blog">("home")
 
-  const t = translations[language]
+  return (
+    <div className="min-h-screen bg-gray-950 text-white">
+      <AnimatedBackground />
 
-  const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "es" : "en"))
-  }
+      {/* Header */}
+      <header className="border-b border-gray-800 sticky top-0 bg-gray-950/80 backdrop-blur-sm z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-8">
+              <h1 className="text-xl font-semibold">Tu Nombre</h1>
+              <nav className="hidden md:flex space-x-6">
+                <button
+                  onClick={() => setActiveSection("home")}
+                  className={`px-3 py-2 rounded-md text-sm transition-colors ${
+                    activeSection === "home" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
+                  }`}
+                >
+                  Inicio
+                </button>
+                <button
+                  onClick={() => setActiveSection("portfolio")}
+                  className={`px-3 py-2 rounded-md text-sm transition-colors ${
+                    activeSection === "portfolio" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
+                  }`}
+                >
+                  Portfolio
+                </button>
+                <button
+                  onClick={() => setActiveSection("blog")}
+                  className={`px-3 py-2 rounded-md text-sm transition-colors ${
+                    activeSection === "blog" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
+                  }`}
+                >
+                  Blog
+                </button>
+              </nav>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Link href="mailto:tu@email.com" className="text-gray-400 hover:text-white transition-colors">
+                <Mail className="w-5 h-5" />
+              </Link>
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Github className="w-5 h-5" />
+              </Link>
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </header>
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case "about":
-        return (
-          <div className="space-y-12">
-            <div>
-              <h1 className="text-4xl font-normal mb-8 text-white">
-                <TypewriterText text={t.about.title} speed={100} />
-              </h1>
-              <div className="space-y-6">
-                {t.about.description.map((paragraph, index) => (
-                  <p key={index} className="text-gray-300 leading-relaxed text-lg">
-                    {paragraph}
-                  </p>
+      {/* Main Content */}
+      <main className="relative z-10">
+        {activeSection === "home" ? (
+          <>
+            {/* Hero Section */}
+            <section className="py-20 px-6">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                  <TypewriterText text="Analista Funcional" speed={100} />
+                </h2>
+                <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                  Especialista en análisis de requisitos y diseño de soluciones técnicas. Transformo ideas de negocio en
+                  productos digitales escalables que impactan a miles de usuarios.
+                </p>
+                <div className="flex items-center justify-center space-x-6 text-sm text-gray-500 mb-8">
+                  <div className="flex items-center">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    Tu Ciudad, País
+                  </div>
+                  <div className="flex items-center">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Disponible para proyectos
+                  </div>
+                </div>
+                <div className="flex items-center justify-center space-x-4">
+                  <Button className="bg-white text-black hover:bg-gray-200">
+                    <Download className="w-4 h-4 mr-2" />
+                    Descargar CV
+                  </Button>
+                  <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800 bg-transparent">
+                    Ver Proyectos
+                  </Button>
+                </div>
+              </div>
+            </section>
+
+            {/* Stats Section */}
+            <section className="py-16 px-6 bg-gray-900/50">
+              <div className="max-w-6xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  {stats.map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <div className="flex justify-center mb-4">
+                        <stat.icon className="w-8 h-8 text-blue-400" />
+                      </div>
+                      <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
+                      <div className="text-sm text-gray-400">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* About Section */}
+            <section className="py-20 px-6">
+              <div className="max-w-6xl mx-auto">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div>
+                    <h3 className="text-3xl font-bold mb-6">Sobre Mí</h3>
+                    <div className="space-y-4 text-gray-300 leading-relaxed">
+                      <p>
+                        Con más de 5 años de experiencia como Analista Funcional, me especializo en conectar las
+                        necesidades del negocio con soluciones técnicas innovadoras. He liderado equipos
+                        multidisciplinarios en el desarrollo de aplicaciones web que sirven a miles de usuarios.
+                      </p>
+                      <p>
+                        Mi enfoque se centra en metodologías ágiles, análisis de requisitos detallado y diseño de
+                        arquitecturas escalables. Tengo experiencia trabajando con startups y empresas consolidadas,
+                        siempre buscando optimizar procesos y mejorar la experiencia del usuario.
+                      </p>
+                      <p>
+                        Cuando no estoy analizando requisitos o diseñando APIs, comparto mi conocimiento a través de
+                        artículos técnicos y mentorías a nuevos profesionales del sector.
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold mb-6">Habilidades Principales</h4>
+                    <div className="grid grid-cols-2 gap-4">
+                      {skills.map((skill, index) => (
+                        <div key={index} className="bg-gray-900 rounded-lg p-4 border border-gray-800">
+                          <div className="flex items-center space-x-3 mb-2">
+                            <span className="text-2xl">{skill.icon}</span>
+                            <div>
+                              <div className="font-medium text-white">{skill.name}</div>
+                              <div className="text-xs text-gray-400">{skill.level}</div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Experience Highlights */}
+            <section className="py-16 px-6 bg-gray-900/30">
+              <div className="max-w-6xl mx-auto">
+                <h3 className="text-3xl font-bold mb-12 text-center">Experiencia Destacada</h3>
+                <div className="grid md:grid-cols-3 gap-8">
+                  <Card className="bg-gray-900 border-gray-800">
+                    <CardContent className="p-6">
+                      <div className="text-blue-400 text-2xl mb-4">🚀</div>
+                      <h4 className="text-lg font-semibold mb-3">Startup Fintech</h4>
+                      <p className="text-gray-400 text-sm mb-4">
+                        Lideré el análisis y diseño de una plataforma de pagos que procesó más de $2M en transacciones
+                        durante su primer año.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="secondary" className="text-xs">
+                          React
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          Node.js
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          PostgreSQL
+                        </Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gray-900 border-gray-800">
+                    <CardContent className="p-6">
+                      <div className="text-green-400 text-2xl mb-4">🏢</div>
+                      <h4 className="text-lg font-semibold mb-3">Empresa Corporativa</h4>
+                      <p className="text-gray-400 text-sm mb-4">
+                        Optimicé procesos internos mediante la implementación de un CRM personalizado, reduciendo
+                        tiempos de respuesta en un 40%.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="secondary" className="text-xs">
+                          Vue.js
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          Python
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          MongoDB
+                        </Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gray-900 border-gray-800">
+                    <CardContent className="p-6">
+                      <div className="text-purple-400 text-2xl mb-4">🔧</div>
+                      <h4 className="text-lg font-semibold mb-3">Consultoría Tech</h4>
+                      <p className="text-gray-400 text-sm mb-4">
+                        Diseñé la arquitectura de microservicios para una plataforma de e-commerce que maneja 50K+
+                        usuarios concurrentes.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="secondary" className="text-xs">
+                          FastAPI
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          Docker
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          Redis
+                        </Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="py-20 px-6">
+              <div className="max-w-4xl mx-auto text-center">
+                <h3 className="text-3xl font-bold mb-6">¿Tienes un proyecto en mente?</h3>
+                <p className="text-xl text-gray-400 mb-8">
+                  Estoy disponible para colaborar en proyectos desafiantes que requieran análisis funcional y diseño de
+                  soluciones técnicas innovadoras.
+                </p>
+                <div className="flex items-center justify-center space-x-4">
+                  <Button className="bg-blue-600 hover:bg-blue-700">
+                    <Mail className="w-4 h-4 mr-2" />
+                    Contactar
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="border-gray-600 text-gray-300 hover:bg-gray-800 bg-transparent"
+                    onClick={() => setActiveSection("portfolio")}
+                  >
+                    Ver Portfolio
+                  </Button>
+                </div>
+              </div>
+            </section>
+          </>
+        ) : activeSection === "portfolio" ? (
+          <section className="py-20 px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="mb-12">
+                <h3 className="text-3xl font-bold mb-4">Proyectos Destacados</h3>
+                <p className="text-gray-400">
+                  Una selección de proyectos en los que he trabajado como analista funcional.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projects.map((project, index) => (
+                  <Card key={index} className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
+                    <CardHeader>
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="text-lg">{project.title}</CardTitle>
+                        <Badge
+                          variant={project.status === "Completado" ? "default" : "secondary"}
+                          className={project.status === "Completado" ? "bg-green-600" : "bg-yellow-600"}
+                        >
+                          {project.status}
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="text-gray-400 text-sm">{project.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech, i) => (
+                          <Badge key={i} variant="outline" className="text-xs">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                      <Link
+                        href={project.link}
+                        className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        Ver proyecto <ExternalLink className="w-3 h-3 ml-1" />
+                      </Link>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
-
-            <div>
-              <h2 className="text-2xl font-normal mb-8 text-white">{t.about.skills.title}</h2>
-              <div className="space-y-12">
-                {/* Professional Skills - Business & Methodologies */}
-                <div>
-                  <h3 className="text-xl font-medium mb-6 text-white border-b border-gray-800 pb-2">
-                    Professional Skills
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div>
-                      <ul className="space-y-3">
-                        {t.about.skills.business.map((skill, index) => (
-                          <li key={index} className="text-gray-300 flex items-center font-mono">
-                            <span className="text-green-400 mr-3">•</span>
-                            {skill}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <ul className="space-y-3">
-                        {t.about.skills.methodologies.map((skill, index) => (
-                          <li key={index} className="text-gray-300 flex items-center font-mono">
-                            <span className="text-green-400 mr-3">•</span>
-                            {skill}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Technical Stack */}
-                <div>
-                  <h3 className="text-xl font-medium mb-6 text-white border-b border-gray-800 pb-2">Stack</h3>
-                  <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
-                    {/* Technical Skills Icons */}
-                    {[
-                      { name: "React", icon: "⚛️" },
-                      { name: "Node.js", icon: "🟢" },
-                      { name: "JavaScript", icon: "🟨" },
-                      { name: "PostgreSQL", icon: "🐘" },
-                      { name: "MongoDB", icon: "🍃" },
-                      { name: "AWS", icon: "☁️" },
-                      { name: "Docker", icon: "🐳" },
-                      { name: "Python", icon: "🐍" },
-                    ].map((tech, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col items-center p-4 rounded-lg border border-gray-800 hover:border-gray-600 hover:bg-gray-900/30 transition-all duration-300 cursor-pointer group"
-                      >
-                        <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
-                          {tech.icon}
-                        </div>
-                        <span className="text-xs text-gray-400 group-hover:text-white transition-colors text-center">
-                          {tech.name}
-                        </span>
-                      </div>
-                    ))}
-
-                    {/* Tools Icons */}
-                    {[
-                      { name: "JIRA", icon: "📋" },
-                      { name: "Figma", icon: "🎨" },
-                      { name: "Git", icon: "📚" },
-                      { name: "Postman", icon: "📮" },
-                      { name: "Tableau", icon: "📊" },
-                      { name: "Confluence", icon: "📝" },
-                      { name: "Azure", icon: "🔷" },
-                      { name: "Redis", icon: "🔴" },
-                    ].map((tool, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col items-center p-4 rounded-lg border border-gray-800 hover:border-gray-600 hover:bg-gray-900/30 transition-all duration-300 cursor-pointer group"
-                      >
-                        <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
-                          {tool.icon}
-                        </div>
-                        <span className="text-xs text-gray-400 group-hover:text-white transition-colors text-center">
-                          {tool.name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+          </section>
+        ) : (
+          <section className="py-20 px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="mb-12">
+                <h3 className="text-3xl font-bold mb-4">Blog</h3>
+                <p className="text-gray-400">Artículos sobre análisis funcional, desarrollo y metodologías ágiles.</p>
               </div>
-            </div>
-          </div>
-        )
 
-      case "experience":
-        return (
-          <div className="space-y-8">
-            <h1 className="text-4xl font-normal mb-8 text-white">
-              <TypewriterText text={t.experience.title} speed={100} />
-            </h1>
-            <div className="space-y-8">
-              {t.experience.jobs.map((job, index) => (
-                <Card key={index} className="bg-black border-gray-800 hover:border-gray-700 transition-colors">
-                  <CardContent className="p-8">
-                    <div className="flex justify-between items-start mb-6">
-                      <div>
-                        <h3 className="text-2xl font-normal text-white mb-2">{job.title}</h3>
-                        <p className="text-white font-medium text-lg">{job.company}</p>
-                      </div>
-                      <div className="text-right text-gray-400">
-                        <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 mr-2" />
-                          {job.period}
-                        </div>
-                        <div className="flex items-center">
-                          <MapPin className="w-4 h-4 mr-2" />
-                          {job.location}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
-                      <div>
-                        <h4 className="text-lg font-medium text-white mb-4 border-b border-gray-800 pb-2">
-                          Responsibilities
-                        </h4>
-                        <ul className="space-y-3">
-                          {job.description.map((desc, i) => (
-                            <li key={i} className="text-gray-300 flex items-start">
-                              <span className="w-1 h-1 bg-white rounded-full mr-4 mt-2 flex-shrink-0"></span>
-                              {desc}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h4 className="text-lg font-medium text-white mb-4 border-b border-gray-800 pb-2">
-                          Key Achievements
-                        </h4>
-                        <ul className="space-y-3">
-                          {job.achievements.map((achievement, i) => (
-                            <li key={i} className="text-gray-300 flex items-start">
-                              <span className="w-1 h-1 bg-white rounded-full mr-4 mt-2 flex-shrink-0"></span>
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )
-
-      case "education":
-        return (
-          <div className="space-y-12">
-            <h1 className="text-4xl font-normal mb-8 text-white">
-              <TypewriterText text={t.education.title} speed={100} />
-            </h1>
-
-            <div className="space-y-8">
-              <h2 className="text-2xl font-normal text-white border-b border-gray-800 pb-4">Education</h2>
-              {t.education.degrees.map((degree, index) => (
-                <Card key={index} className="bg-black border-gray-800">
-                  <CardContent className="p-6">
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <h3 className="text-xl font-medium text-white mb-2">{degree.degree}</h3>
-                        <p className="text-white font-medium">{degree.institution}</p>
-                      </div>
-                      <Badge variant="outline" className="border-gray-600 text-gray-300 bg-black">
-                        {degree.period}
-                      </Badge>
-                    </div>
-                    <p className="text-gray-300">{degree.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="space-y-8">
-              <h2 className="text-2xl font-normal text-white border-b border-gray-800 pb-4">Certifications</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {t.education.certifications.map((cert, index) => (
-                  <Card key={index} className="bg-black border-gray-800">
+              <div className="space-y-6">
+                {blogPosts.map((post, index) => (
+                  <Card key={index} className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
                     <CardContent className="p-6">
-                      <h3 className="text-lg font-medium text-white mb-3">{cert.name}</h3>
-                      <div className="flex justify-between items-center">
-                        <p className="text-gray-400">{cert.issuer}</p>
-                        <Badge variant="outline" className="border-gray-600 text-gray-300 bg-black">
-                          {cert.year}
-                        </Badge>
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between text-sm text-gray-400">
+                          <div className="flex items-center space-x-4">
+                            <span className="flex items-center">
+                              <Calendar className="w-4 h-4 mr-1" />
+                              {new Date(post.date).toLocaleDateString("es-ES", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              })}
+                            </span>
+                            <span>{post.readTime} lectura</span>
+                          </div>
+                        </div>
+                        <h4 className="text-xl font-semibold hover:text-gray-200 transition-colors cursor-pointer">
+                          {post.title}
+                        </h4>
+                        <p className="text-gray-400 leading-relaxed">{post.excerpt}</p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex flex-wrap gap-2">
+                            {post.tags.map((tag, i) => (
+                              <Badge key={i} variant="secondary" className="text-xs">
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                          <button className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors">
+                            Leer más <ArrowRight className="w-3 h-3 ml-1" />
+                          </button>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
             </div>
-          </div>
-        )
+          </section>
+        )}
+      </main>
 
-      case "projects":
-        return (
-          <div className="space-y-8">
-            <h1 className="text-4xl font-normal mb-8 text-white">
-              <TypewriterText text={t.projects.title} speed={100} />
-            </h1>
-            <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
-              {t.projects.items.map((project, index) => (
-                <Card
-                  key={index}
-                  className="bg-black border-gray-800 hover:border-gray-700 transition-all duration-300 hover:scale-105 group"
-                >
-                  <CardContent className="p-0">
-                    {/* Project Image */}
-                    <div className="relative h-48 overflow-hidden">
-                      <Image
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.imageAlt}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                      <div className="absolute top-3 right-3">
-                        <Button
-                          size="sm"
-                          className="bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20 text-xs"
-                        >
-                          <ExternalLink className="w-3 h-3 mr-1" />
-                          {t.projects.viewProject}
-                        </Button>
-                      </div>
-                      <div className="absolute top-3 left-3">
-                        <Badge
-                          className={`text-xs ${
-                            project.status === "Live" || project.status === "En Vivo"
-                              ? "bg-green-600 text-white"
-                              : project.status === "Production" || project.status === "Producción"
-                                ? "bg-blue-600 text-white"
-                                : "bg-yellow-600 text-black"
-                          }`}
-                        >
-                          {project.status}
-                        </Badge>
-                      </div>
-                    </div>
-
-                    {/* Project Details */}
-                    <div className="p-6">
-                      <div className="mb-4">
-                        <h3 className="text-lg font-medium text-white mb-2">{project.name}</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">{project.description}</p>
-                      </div>
-
-                      <div className="space-y-4">
-                        <div>
-                          <div className="flex flex-wrap gap-1 mb-3">
-                            {project.technologies.slice(0, 4).map((tech, i) => (
-                              <Badge
-                                key={i}
-                                variant="secondary"
-                                className="bg-gray-900 text-gray-300 border border-gray-800 text-xs"
-                              >
-                                {tech}
-                              </Badge>
-                            ))}
-                            {project.technologies.length > 4 && (
-                              <Badge
-                                variant="secondary"
-                                className="bg-gray-900 text-gray-300 border border-gray-800 text-xs"
-                              >
-                                +{project.technologies.length - 4}
-                              </Badge>
-                            )}
-                          </div>
-                        </div>
-
-                        <div>
-                          <h4 className="text-sm font-medium text-white mb-2">Key Results</h4>
-                          <ul className="space-y-1">
-                            {project.achievements.slice(0, 2).map((achievement, i) => (
-                              <li key={i} className="text-gray-400 flex items-start text-xs">
-                                <span className="w-1 h-1 bg-white rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
-                                {achievement}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )
-
-      default:
-        return null
-    }
-  }
-
-  return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden terminal-text">
-      {/* Animated Background */}
-      <AnimatedBackground />
-
-      {/* Left Sidebar - Fixed */}
-      <div className="w-80 bg-black border-r border-gray-800 p-8 fixed left-0 top-0 h-full overflow-y-auto z-10 terminal-text">
-        <div className="text-center mb-8">
-          <Image
-            src="/professional-headshot.png"
-            alt="Profile"
-            width={150}
-            height={150}
-            className="rounded-full mx-auto mb-6 border-2 border-gray-800"
-          />
-          <h1 className="text-2xl font-normal text-white mb-2">Your Name</h1>
-          <p className="text-gray-400 mb-4">{t.sidebar.title}</p>
-          <div className="flex items-center justify-center text-gray-400 text-sm mb-6">
-            <MapPin className="w-4 h-4 mr-2" />
-            {t.sidebar.location}
-          </div>
-          <Button className="w-full bg-white text-black hover:bg-gray-100 mb-6 font-medium">
-            <Download className="w-4 h-4 mr-2" />
-            {t.sidebar.downloadCV}
-          </Button>
+      {/* Footer */}
+      <footer className="border-t border-gray-800 py-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-6 text-center text-gray-400">
+          <p>&copy; 2025 Tu Nombre. Todos los derechos reservados.</p>
         </div>
-
-        <div className="mb-8">
-          <h3 className="text-lg font-medium text-white mb-4 border-b border-gray-800 pb-2">{t.sidebar.followMe}</h3>
-          <div className="space-y-3">
-            <Link
-              href="mailto:your.email@example.com"
-              className="flex items-center text-gray-400 hover:text-white transition-colors w-full p-3 rounded border border-gray-800/30"
-            >
-              <Mail className="w-5 h-5 mr-3" />
-              <span className="text-sm">your.email@example.com</span>
-            </Link>
-            <div className="flex space-x-2">
-              <Link
-                href="#"
-                className="flex-1 p-3 border border-gray-800 hover:border-gray-700 rounded text-gray-400 hover:text-white transition-colors flex items-center justify-center"
-              >
-                <Linkedin className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
-                className="flex-1 p-3 border border-gray-800 hover:border-gray-700 rounded text-gray-400 hover:text-white transition-colors flex items-center justify-center"
-              >
-                <Github className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Language Toggle */}
-        <button
-          onClick={toggleLanguage}
-          className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors w-full p-3 rounded border border-gray-800/30"
-        >
-          <Globe className="w-4 h-4" />
-          <span className="text-sm font-medium">{language.toUpperCase()}</span>
-        </button>
-      </div>
-
-      {/* Main Content Area */}
-      <div className="flex-1 ml-80 relative z-10">
-        {/* Top Navigation - Fully Transparent */}
-        <div className="sticky top-0 z-40">
-          <div className="px-8 py-6">
-            <div className="flex justify-center">
-              <div className="rounded-lg p-1 flex space-x-1 border border-gray-800/30">
-                {(["about", "experience", "education", "projects"] as const).map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`px-8 py-3 rounded-md text-sm font-medium transition-colors ${
-                      activeTab === tab ? "bg-white text-black" : "text-gray-400 hover:text-white hover:bg-gray-800/30"
-                    }`}
-                  >
-                    {t.navigation[tab]}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-8">
-          <div className="max-w-6xl">{renderContent()}</div>
-        </div>
-      </div>
+      </footer>
     </div>
   )
 }
