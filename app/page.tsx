@@ -87,6 +87,70 @@ const stats = [
   { label: "APIs diseñadas", value: "15+", icon: Database },
 ]
 
+const technicalProjects = [
+  {
+    name: "Sistema de Gestión de Inventarios",
+    description:
+      "Aplicación full-stack para control de inventarios con dashboard en tiempo real y alertas automáticas.",
+    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+    type: "Web Application",
+    year: "2024",
+    features: ["Dashboard en tiempo real", "Alertas automáticas", "Reportes PDF", "API REST"],
+    icon: "📦",
+    color: "text-blue-400",
+  },
+  {
+    name: "API Gateway Corporativo",
+    description: "Gateway centralizado para microservicios con autenticación JWT, rate limiting y monitoreo.",
+    technologies: ["FastAPI", "Redis", "Docker", "Nginx"],
+    type: "Backend Service",
+    year: "2023",
+    features: ["Autenticación JWT", "Rate limiting", "Logs centralizados", "Health checks"],
+    icon: "🔗",
+    color: "text-green-400",
+  },
+  {
+    name: "Dashboard de Analytics",
+    description: "Plataforma de visualización de datos con gráficos interactivos y exportación de reportes.",
+    technologies: ["Vue.js", "Python", "MongoDB", "Chart.js"],
+    type: "Data Visualization",
+    year: "2023",
+    features: ["Gráficos interactivos", "Filtros avanzados", "Exportación Excel", "Scheduled reports"],
+    icon: "📊",
+    color: "text-purple-400",
+  },
+  {
+    name: "Sistema de Notificaciones",
+    description: "Microservicio para envío de notificaciones multi-canal (email, SMS, push) con cola de mensajes.",
+    technologies: ["Python", "Celery", "RabbitMQ", "AWS SES"],
+    type: "Microservice",
+    year: "2022",
+    features: ["Multi-canal", "Cola de mensajes", "Retry automático", "Templates dinámicos"],
+    icon: "📧",
+    color: "text-yellow-400",
+  },
+  {
+    name: "CLI Tool para DevOps",
+    description: "Herramienta de línea de comandos para automatizar deployments y gestión de infraestructura.",
+    technologies: ["Python", "Click", "AWS CLI", "Terraform"],
+    type: "CLI Tool",
+    year: "2022",
+    features: ["Deploy automático", "Rollback seguro", "Config validation", "Multi-environment"],
+    icon: "⚡",
+    color: "text-orange-400",
+  },
+  {
+    name: "Bot de Slack para Reportes",
+    description: "Bot inteligente que genera reportes automáticos y responde consultas sobre métricas del negocio.",
+    technologies: ["Node.js", "Slack API", "PostgreSQL", "Cron"],
+    type: "Automation Bot",
+    year: "2021",
+    features: ["Comandos slash", "Reportes automáticos", "Queries en lenguaje natural", "Scheduled tasks"],
+    icon: "🤖",
+    color: "text-cyan-400",
+  },
+]
+
 // Typewriter Animation Hook
 const useTypewriter = (text: string, speed = 50) => {
   const [displayText, setDisplayText] = useState("")
@@ -207,7 +271,10 @@ export default function SimplePortfolioBlog() {
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
-              <h1 className="text-xl font-semibold">Tu Nombre</h1>
+              <div>
+                <h1 className="text-xl font-semibold">Tu Nombre Real</h1>
+                <p className="text-xs text-gray-400">Analista Funcional</p>
+              </div>
               <nav className="hidden md:flex space-x-6">
                 <button
                   onClick={() => setActiveSection("home")}
@@ -257,9 +324,10 @@ export default function SimplePortfolioBlog() {
             {/* Hero Section */}
             <section className="py-20 px-6">
               <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                  <TypewriterText text="Analista Funcional" speed={100} />
+                <h2 className="text-4xl md:text-6xl font-bold mb-4">
+                  <TypewriterText text="Tu Nombre Real" speed={100} />
                 </h2>
+                <div className="text-xl text-blue-400 mb-6 font-medium">Analista Funcional Senior</div>
                 <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
                   Especialista en análisis de requisitos y diseño de soluciones técnicas. Transformo ideas de negocio en
                   productos digitales escalables que impactan a miles de usuarios.
@@ -420,6 +488,67 @@ export default function SimplePortfolioBlog() {
               </div>
             </section>
 
+            {/* Technical Projects Section */}
+            <section className="py-20 px-6">
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-12">
+                  <h3 className="text-3xl font-bold mb-4">Proyectos Técnicos Desarrollados</h3>
+                  <p className="text-gray-400 max-w-2xl mx-auto">
+                    Aplicaciones y sistemas que he programado desde cero, desde APIs hasta herramientas de
+                    automatización
+                  </p>
+                </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {technicalProjects.map((project, index) => (
+                    <Card
+                      key={index}
+                      className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:transform hover:scale-105"
+                    >
+                      <CardContent className="p-6">
+                        <div className="flex items-start justify-between mb-4">
+                          <div className={`text-3xl ${project.color}`}>{project.icon}</div>
+                          <Badge variant="outline" className="text-xs">
+                            {project.year}
+                          </Badge>
+                        </div>
+                        <h4 className="text-lg font-semibold mb-2 text-white">{project.name}</h4>
+                        <p className="text-gray-400 text-sm mb-4 leading-relaxed">{project.description}</p>
+
+                        <div className="mb-4">
+                          <div className="text-xs text-gray-500 mb-2">Tipo de proyecto</div>
+                          <Badge variant="secondary" className="text-xs">
+                            {project.type}
+                          </Badge>
+                        </div>
+
+                        <div className="mb-4">
+                          <div className="text-xs text-gray-500 mb-2">Características principales</div>
+                          <div className="flex flex-wrap gap-1">
+                            {project.features.map((feature, i) => (
+                              <span key={i} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
+                                {feature}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="text-xs text-gray-500 mb-2">Stack tecnológico</div>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech, i) => (
+                              <Badge key={i} variant="outline" className="text-xs border-gray-600">
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </section>
+
             {/* CTA Section */}
             <section className="py-20 px-6">
               <div className="max-w-4xl mx-auto text-center">
@@ -544,7 +673,7 @@ export default function SimplePortfolioBlog() {
       {/* Footer */}
       <footer className="border-t border-gray-800 py-8 relative z-10">
         <div className="max-w-6xl mx-auto px-6 text-center text-gray-400">
-          <p>&copy; 2025 Tu Nombre. Todos los derechos reservados.</p>
+          <p>&copy; 2025 Tu Nombre Real. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
