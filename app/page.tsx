@@ -20,7 +20,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 type Language = "en" | "es"
-type ActiveTab = "about" | "experience" | "education" | "projects" | "blog"
+type ActiveTab = "home" | "portfolio" | "blog" | "contact"
 
 const projects = [
   {
@@ -81,10 +81,10 @@ const skills = [
 ]
 
 const stats = [
-  { label: "Años de experiencia", value: "5+", icon: Calendar },
-  { label: "Proyectos completados", value: "25+", icon: Code },
-  { label: "Equipos liderados", value: "8", icon: Users },
-  { label: "APIs diseñadas", value: "15+", icon: Database },
+  { label: "Años de experiencia", value: "4+", icon: Calendar },
+  { label: "Proyectos completados", value: "15", icon: Code },
+  { label: "Equipos liderados", value: "3", icon: Users },
+  { label: "APIs diseñadas", value: "10", icon: Database },
 ]
 
 const technicalProjects = [
@@ -260,7 +260,7 @@ const AnimatedBackground = () => {
 }
 
 export default function SimplePortfolioBlog() {
-  const [activeSection, setActiveSection] = useState<"home" | "portfolio" | "blog">("home")
+const [activeSection, setActiveSection] = useState<"home" | "portfolio" | "blog" | "contact">("home")
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
@@ -272,7 +272,7 @@ export default function SimplePortfolioBlog() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div>
-                <h1 className="text-xl font-semibold">Tu Nombre Real</h1>
+                <h1 className="text-xl font-semibold">Sebastián Campo</h1>
                 <p className="text-xs text-gray-400">Analista Funcional</p>
               </div>
               <nav className="hidden md:flex space-x-6">
@@ -303,13 +303,20 @@ export default function SimplePortfolioBlog() {
               </nav>
             </div>
             <div className="flex items-center space-x-4">
-              <Link href="mailto:tu@email.com" className="text-gray-400 hover:text-white transition-colors">
+              <Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault()
+                  setActiveSection("contact")
+                }}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 <Mail className="w-5 h-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="https://github.com/seba-campo" target="_blank" className="text-gray-400 hover:text-white transition-colors">
                 <Github className="w-5 h-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="https://linkedin.com/in/seba-campo" target="_blank" className="text-gray-400 hover:text-white transition-colors">
                 <Linkedin className="w-5 h-5" />
               </Link>
             </div>
@@ -325,9 +332,9 @@ export default function SimplePortfolioBlog() {
             <section className="py-20 px-6">
               <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-4xl md:text-6xl font-bold mb-4">
-                  <TypewriterText text="Tu Nombre Real" speed={100} />
+                  <TypewriterText text="Sebastián Campo" speed={100} />
                 </h2>
-                <div className="text-xl text-blue-400 mb-6 font-medium">Analista Funcional Senior</div>
+                <div className="text-xl text-blue-400 mb-6 font-medium">Analista Funcional Semi Senior</div>
                 <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
                   Especialista en análisis de requisitos y diseño de soluciones técnicas. Transformo ideas de negocio en
                   productos digitales escalables que impactan a miles de usuarios.
@@ -335,7 +342,7 @@ export default function SimplePortfolioBlog() {
                 <div className="flex items-center justify-center space-x-6 text-sm text-gray-500 mb-8">
                   <div className="flex items-center">
                     <MapPin className="w-4 h-4 mr-2" />
-                    Tu Ciudad, País
+                    Olivos, Buenos Aires
                   </div>
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 mr-2" />
@@ -347,7 +354,11 @@ export default function SimplePortfolioBlog() {
                     <Download className="w-4 h-4 mr-2" />
                     Descargar CV
                   </Button>
-                  <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800 bg-transparent">
+                  <Button 
+                      variant="outline" 
+                      className="border-gray-600 text-gray-300 hover:bg-gray-800 bg-transparent"
+                      onClick={() => setActiveSection("portfolio")}
+                      >
                     Ver Proyectos
                   </Button>
                 </div>
@@ -378,20 +389,10 @@ export default function SimplePortfolioBlog() {
                   <div>
                     <h3 className="text-3xl font-bold mb-6">Sobre Mí</h3>
                     <div className="space-y-4 text-gray-300 leading-relaxed">
-                      <p>
-                        Con más de 5 años de experiencia como Analista Funcional, me especializo en conectar las
-                        necesidades del negocio con soluciones técnicas innovadoras. He liderado equipos
-                        multidisciplinarios en el desarrollo de aplicaciones web que sirven a miles de usuarios.
-                      </p>
-                      <p>
-                        Mi enfoque se centra en metodologías ágiles, análisis de requisitos detallado y diseño de
-                        arquitecturas escalables. Tengo experiencia trabajando con startups y empresas consolidadas,
-                        siempre buscando optimizar procesos y mejorar la experiencia del usuario.
-                      </p>
-                      <p>
-                        Cuando no estoy analizando requisitos o diseñando APIs, comparto mi conocimiento a través de
-                        artículos técnicos y mentorías a nuevos profesionales del sector.
-                      </p>
+                      <p>👋 Hola, soy Seba.</p>
+                      <p>Hace más de 4 años me dedico al análisis funcional y al diseño de soluciones digitales, uniendo negocio y tecnología. Me interesa cómo la lógica y la programación pueden mejorar procesos y transformar la forma en que los equipos trabajan.</p>
+
+                      <p>Disfruto relevar necesidades, pensar soluciones escalables y acompañar su implementación con foco en la experiencia del usuario y la eficiencia. Actualmente soy Analista Funcional en Farmatouch, donde ayudo a optimizar productos digitales para la gestión de farmacias.</p>
                     </div>
                   </div>
                   <div>
@@ -558,16 +559,11 @@ export default function SimplePortfolioBlog() {
                   soluciones técnicas innovadoras.
                 </p>
                 <div className="flex items-center justify-center space-x-4">
-                  <Button className="bg-blue-600 hover:bg-blue-700">
+                  <Button 
+                      className="bg-blue-600 hover:bg-blue-700"
+                      onClick={() => setActiveSection("contact")}>
                     <Mail className="w-4 h-4 mr-2" />
                     Contactar
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-gray-600 text-gray-300 hover:bg-gray-800 bg-transparent"
-                    onClick={() => setActiveSection("portfolio")}
-                  >
-                    Ver Portfolio
                   </Button>
                 </div>
               </div>
@@ -579,7 +575,7 @@ export default function SimplePortfolioBlog() {
               <div className="mb-12">
                 <h3 className="text-3xl font-bold mb-4">Proyectos Destacados</h3>
                 <p className="text-gray-400">
-                  Una selección de proyectos en los que he trabajado como analista funcional.
+                  Una selección de proyectos personales desarrollados en mi camino autodidacta.
                 </p>
               </div>
 
@@ -618,12 +614,12 @@ export default function SimplePortfolioBlog() {
               </div>
             </div>
           </section>
-        ) : (
+        ) : activeSection === "blog" ? (
           <section className="py-20 px-6">
             <div className="max-w-6xl mx-auto">
               <div className="mb-12">
                 <h3 className="text-3xl font-bold mb-4">Blog</h3>
-                <p className="text-gray-400">Artículos sobre análisis funcional, desarrollo y metodologías ágiles.</p>
+                <p className="text-gray-400">Aquí encontrarás mis notas y pensamientos que quiero registrar de mi aprendizaje.</p>
               </div>
 
               <div className="space-y-6">
@@ -667,13 +663,144 @@ export default function SimplePortfolioBlog() {
               </div>
             </div>
           </section>
-        )}
+        ) : activeSection === "contact" ? (
+          <section className="py-20 px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h3 className="text-3xl font-bold mb-4">Contacto</h3>
+                <p className="text-gray-400 max-w-2xl mx-auto">
+                  ¿Tienes un proyecto en mente o quieres colaborar? Envíame un mensaje y te responderé lo antes posible.
+                </p>
+              </div>
+
+              <Card className="bg-gray-900 border-gray-800">
+                <CardContent className="p-8">
+                  <form className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                          Nombre *
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          required
+                          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                          placeholder="Tu nombre completo"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                          placeholder="tu@email.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
+                        Empresa / Organización
+                      </label>
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                        placeholder="Nombre de tu empresa (opcional)"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                        Asunto *
+                      </label>
+                      <select
+                        id="subject"
+                        name="subject"
+                        required
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                      >
+                        <option value="">Selecciona un asunto</option>
+                        <option value="proyecto">Nuevo Proyecto</option>
+                        <option value="consultoria">Consultoría</option>
+                        <option value="colaboracion">Colaboración</option>
+                        <option value="mentoria">Mentoría</option>
+                        <option value="otro">Otro</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                        Mensaje *
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={6}
+                        required
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400 resize-none"
+                        placeholder="Cuéntame sobre tu proyecto o consulta..."
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm text-gray-400">* Campos obligatorios</div>
+                      <div className="flex space-x-4">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="border-gray-600 text-gray-300 hover:bg-gray-800 bg-transparent"
+                          onClick={() => setActiveSection("home")}
+                        >
+                          Cancelar
+                        </Button>
+                        <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                          <Mail className="w-4 h-4 mr-2" />
+                          Enviar Mensaje
+                        </Button>
+                      </div>
+                    </div>
+                  </form>
+                </CardContent>
+              </Card>
+
+              {/* Contact Info */}
+              <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
+                <div className="space-y-2">
+                  <div className="text-blue-400 text-2xl">📧</div>
+                  <h4 className="font-semibold">Email</h4>
+                  <p className="text-gray-400 text-sm">tu@email.com</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-green-400 text-2xl">💼</div>
+                  <h4 className="font-semibold">LinkedIn</h4>
+                  <p className="text-gray-400 text-sm">Conectemos profesionalmente</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-purple-400 text-2xl">⚡</div>
+                  <h4 className="font-semibold">Respuesta</h4>
+                  <p className="text-gray-400 text-sm">Dentro de 24 horas</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : (
+          <div>Unknown Section</div> 
+        )}      
       </main>
 
       {/* Footer */}
       <footer className="border-t border-gray-800 py-8 relative z-10">
         <div className="max-w-6xl mx-auto px-6 text-center text-gray-400">
-          <p>&copy; 2025 Tu Nombre Real. Todos los derechos reservados.</p>
+          <p>&copy; 2025 Sebastián Campo. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
