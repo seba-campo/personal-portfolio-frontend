@@ -72,12 +72,12 @@ const blogPosts = [
 ]
 
 const skills = [
-  { name: "Análisis de Requisitos", icon: "📋", level: "Experto" },
-  { name: "React & Node.js", icon: "⚛️", level: "Avanzado" },
-  { name: "PostgreSQL", icon: "🐘", level: "Avanzado" },
-  { name: "Docker", icon: "🐳", level: "Intermedio" },
-  { name: "Scrum & Agile", icon: "🔄", level: "Experto" },
-  { name: "API Design", icon: "🔗", level: "Avanzado" },
+  { name: "Análisis de Requisitos", icon: "📋", level: "Avanzado" },
+  { name: "Node.js", icon: "⚛️", level: "Intermedio" },
+  { name: "PostgreSQL", icon: "🐘", level: "Intermedio" },
+  { name: "Postman", icon: "🌐", level: "Intermedio" },
+  { name: "SaaS", icon: "💡", level: "Avanzado" },
+  { name: "API Design", icon: "🔗", level: "Intermedio" },
 ]
 
 const stats = [
@@ -292,14 +292,14 @@ const [activeSection, setActiveSection] = useState<"home" | "portfolio" | "blog"
                 >
                   Portfolio
                 </button>
-                <button
+                {/* <button
                   onClick={() => setActiveSection("blog")}
                   className={`px-3 py-2 rounded-md text-sm transition-colors ${
                     activeSection === "blog" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
                   }`}
                 >
                   Blog
-                </button>
+                </button> */}
               </nav>
             </div>
             <div className="flex items-center space-x-4">
@@ -423,20 +423,22 @@ const [activeSection, setActiveSection] = useState<"home" | "portfolio" | "blog"
                   <Card className="bg-gray-900 border-gray-800">
                     <CardContent className="p-6">
                       <div className="text-blue-400 text-2xl mb-4">🚀</div>
-                      <h4 className="text-lg font-semibold mb-3">Startup Fintech</h4>
+                      <h4 className="text-white font-semibold mb-3">Metafar - Startup Healthech</h4>
                       <p className="text-gray-400 text-sm mb-4">
-                        Lideré el análisis y diseño de una plataforma de pagos que procesó más de $2M en transacciones
-                        durante su primer año.
+                        Llevé a cabo análisis crossplatform para producto de consumo masivo orientado a la compra de medicamentos
                       </p>
                       <div className="flex flex-wrap gap-2">
                         <Badge variant="secondary" className="text-xs">
-                          React
+                          Atlassian
                         </Badge>
                         <Badge variant="secondary" className="text-xs">
-                          Node.js
+                          C #
                         </Badge>
                         <Badge variant="secondary" className="text-xs">
                           PostgreSQL
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          React
                         </Badge>
                       </div>
                     </CardContent>
@@ -445,7 +447,7 @@ const [activeSection, setActiveSection] = useState<"home" | "portfolio" | "blog"
                   <Card className="bg-gray-900 border-gray-800">
                     <CardContent className="p-6">
                       <div className="text-green-400 text-2xl mb-4">🏢</div>
-                      <h4 className="text-lg font-semibold mb-3">Empresa Corporativa</h4>
+                      <h4 className="text-white font-semibold mb-3">Empresa Corporativa</h4>
                       <p className="text-gray-400 text-sm mb-4">
                         Optimicé procesos internos mediante la implementación de un CRM personalizado, reduciendo
                         tiempos de respuesta en un 40%.
@@ -467,7 +469,7 @@ const [activeSection, setActiveSection] = useState<"home" | "portfolio" | "blog"
                   <Card className="bg-gray-900 border-gray-800">
                     <CardContent className="p-6">
                       <div className="text-purple-400 text-2xl mb-4">🔧</div>
-                      <h4 className="text-lg font-semibold mb-3">Consultoría Tech</h4>
+                      <h4 className="text-white font-semibold mb-3">Consultoría Tech</h4>
                       <p className="text-gray-400 text-sm mb-4">
                         Diseñé la arquitectura de microservicios para una plataforma de e-commerce que maneja 50K+
                         usuarios concurrentes.
@@ -613,57 +615,58 @@ const [activeSection, setActiveSection] = useState<"home" | "portfolio" | "blog"
                 ))}
               </div>
             </div>
-          </section>
-        ) : activeSection === "blog" ? (
-          <section className="py-20 px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="mb-12">
-                <h3 className="text-3xl font-bold mb-4">Blog</h3>
-                <p className="text-gray-400">Aquí encontrarás mis notas y pensamientos que quiero registrar de mi aprendizaje.</p>
-              </div>
+          </section> )
+        // ) : activeSection === "blog" ? (
+        //   <section className="py-20 px-6">
+        //     <div className="max-w-6xl mx-auto">
+        //       <div className="mb-12">
+        //         <h3 className="text-3xl font-bold mb-4">Blog</h3>
+        //         <p className="text-gray-400">Aquí encontrarás mis notas y pensamientos que quiero registrar de mi aprendizaje.</p>
+        //       </div>
 
-              <div className="space-y-6">
-                {blogPosts.map((post, index) => (
-                  <Card key={index} className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
-                    <CardContent className="p-6">
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between text-sm text-gray-400">
-                          <div className="flex items-center space-x-4">
-                            <span className="flex items-center">
-                              <Calendar className="w-4 h-4 mr-1" />
-                              {new Date(post.date).toLocaleDateString("es-ES", {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                              })}
-                            </span>
-                            <span>{post.readTime} lectura</span>
-                          </div>
-                        </div>
-                        <h4 className="text-xl font-semibold hover:text-gray-200 transition-colors cursor-pointer">
-                          {post.title}
-                        </h4>
-                        <p className="text-gray-400 leading-relaxed">{post.excerpt}</p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex flex-wrap gap-2">
-                            {post.tags.map((tag, i) => (
-                              <Badge key={i} variant="secondary" className="text-xs">
-                                {tag}
-                              </Badge>
-                            ))}
-                          </div>
-                          <button className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors">
-                            Leer más <ArrowRight className="w-3 h-3 ml-1" />
-                          </button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </section>
-        ) : activeSection === "contact" ? (
+        //       <div className="space-y-6">
+        //         {blogPosts.map((post, index) => (
+        //           <Card key={index} className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
+        //             <CardContent className="p-6">
+        //               <div className="space-y-4">
+        //                 <div className="flex items-center justify-between text-sm text-gray-400">
+        //                   <div className="flex items-center space-x-4">
+        //                     <span className="flex items-center">
+        //                       <Calendar className="w-4 h-4 mr-1" />
+        //                       {new Date(post.date).toLocaleDateString("es-ES", {
+        //                         year: "numeric",
+        //                         month: "long",
+        //                         day: "numeric",
+        //                       })}
+        //                     </span>
+        //                     <span>{post.readTime} lectura</span>
+        //                   </div>
+        //                 </div>
+        //                 <h4 className="text-xl font-semibold hover:text-gray-200 transition-colors cursor-pointer">
+        //                   {post.title}
+        //                 </h4>
+        //                 <p className="text-gray-400 leading-relaxed">{post.excerpt}</p>
+        //                 <div className="flex items-center justify-between">
+        //                   <div className="flex flex-wrap gap-2">
+        //                     {post.tags.map((tag, i) => (
+        //                       <Badge key={i} variant="secondary" className="text-xs">
+        //                         {tag}
+        //                       </Badge>
+        //                     ))}
+        //                   </div>
+        //                   <button className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors">
+        //                     Leer más <ArrowRight className="w-3 h-3 ml-1" />
+        //                   </button>
+        //                 </div>
+        //               </div>
+        //             </CardContent>
+        //           </Card>
+        //         ))}
+        //       </div>
+        //     </div>
+        //   </section>
+        // )
+         : activeSection === "contact" ? (
           <section className="py-20 px-6">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
