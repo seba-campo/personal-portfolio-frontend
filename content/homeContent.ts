@@ -50,12 +50,12 @@ const blogPosts = [
 ];
 
 const skills = [
-    { name: "ReactJs", icon: "⚛️", level: "Intermedio" },
-    { name: "NodeJs", icon: "🔧", level: "Intermedio" },
-    { name: "PostgreSQL", icon: "🐘", level: "Intermedio" },
-    { name: "Postman", icon: "🌐", level: "Intermedio" },
-    { name: "NextJs", icon: "💡", level: "Intermedio" },
-    { name: "C# - .Net", icon: "🔗", level: "Básico" },
+    { name: "ReactJs", icon: "⚛️", level: undefined },
+    { name: "NodeJs", icon: "🔧", level: undefined },
+    { name: "PostgreSQL", icon: "🐘", level: "SaaS: Neon" },
+    { name: "Postman", icon: "🌐", level: undefined },
+    { name: "NextJs", icon: "💡", level: undefined },
+    { name: ".Net", icon: "🔗", level: "Entity Framework" },
 ];
 
 const stats = [

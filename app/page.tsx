@@ -55,14 +55,6 @@ export default function SimplePortfolioBlog() {
                 >
                   Portfolio
                 </button>
-                {/* <button
-                  onClick={() => setActiveSection("blog")}
-                  className={`px-3 py-2 rounded-md text-sm transition-colors ${
-                    activeSection === "blog" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  Blog
-                </button> */}
               </nav>
             </div>
             <div className="flex items-center space-x-4">
@@ -168,7 +160,9 @@ export default function SimplePortfolioBlog() {
                             <span className="text-2xl">{skill.icon}</span>
                             <div>
                               <div className="font-medium text-white">{skill.name}</div>
-                              <div className="text-xs text-gray-400">{skill.level}</div>
+                              {skill.level != undefined && (
+                                <div className="text-xs text-gray-400 self-center">{skill.level}</div>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -184,16 +178,25 @@ export default function SimplePortfolioBlog() {
               <div className="max-w-6xl mx-auto">
                 <h3 className="text-3xl font-bold mb-12 text-center">Experiencia Destacada</h3>
                 <div className="grid md:grid-cols-3 gap-8">
-                  <Card className="bg-gray-900 border-gray-800">
+                  <Card
+                    className="bg-gray-900 border-gray-800 cursor-pointer"
+                    onClick={() => window.open("https://metafar.io/", "_blank")}
+                  >
                     <CardContent className="p-6">
-                      <div className="text-blue-400 text-2xl mb-4">🚀</div>
+                      <div className="text-blue-400 text-2xl mb-4">⚕️</div>
                       <h4 className="text-white font-semibold mb-3">Metafar - Startup Healthech</h4>
                       <p className="text-gray-400 text-sm mb-4">
-                        Llevé a cabo análisis crossplatform para producto de consumo masivo orientado a la compra de medicamentos
+                        Actualmente activo como desarrollador frontend, y anteriormente analista funcional de backoffice para producto de consumo masivo orientado a la compra de medicamentos
                       </p>
                       <div className="flex flex-wrap gap-2">
                         <Badge variant="secondary" className="text-xs">
                           Atlassian
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          Jira
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          React
                         </Badge>
                         <Badge variant="secondary" className="text-xs">
                           C #
@@ -201,52 +204,62 @@ export default function SimplePortfolioBlog() {
                         <Badge variant="secondary" className="text-xs">
                           PostgreSQL
                         </Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card
+                    className="bg-gray-900 border-gray-800 cursor-pointer"
+                    onClick={() => window.open("https://lepton.com.ar", "_blank")}
+                  >
+                    <CardContent className="p-6">
+                      <div className="text-green-400 text-2xl mb-4">🛠️</div>
+                      <h4 className="text-white font-semibold mb-3">Lepton Sistemas</h4>
+                      <p className="text-gray-400 text-sm mb-4">
+                        Realicé desarrollo frontend de aplicaciones web 3d para la industria de amoblamientos, y colaboré con la integracion a diversos ecommerce.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
                         <Badge variant="secondary" className="text-xs">
-                          React
+                          Vanilla Javascript
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          UX/UI
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          Integraciones ecommerce
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          Jira
                         </Badge>
                       </div>
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-gray-900 border-gray-800">
+                  <Card
+                    className="bg-gray-900 border-gray-800 cursor-pointer"
+                    onClick={() => window.open("https://lepton.com.ar", "_blank")}
+                  >
                     <CardContent className="p-6">
-                      <div className="text-green-400 text-2xl mb-4">🏢</div>
-                      <h4 className="text-white font-semibold mb-3">Empresa Corporativa</h4>
+                      <div className="text-purple-400 text-2xl mb-4">🔩</div>
+                      <h4 className="text-white font-semibold mb-3">Lepton Sistemas</h4>
                       <p className="text-gray-400 text-sm mb-4">
-                        Optimicé procesos internos mediante la implementación de un CRM personalizado, reduciendo
-                        tiempos de respuesta en un 40%.
+                        Realicé soporte técnico de sistemas desktop y web para la industria de amoblamientos.
                       </p>
                       <div className="flex flex-wrap gap-2">
                         <Badge variant="secondary" className="text-xs">
-                          Vue.js
+                          Integraciones CNC
                         </Badge>
                         <Badge variant="secondary" className="text-xs">
-                          Python
+                          Supervisor de procesos
                         </Badge>
                         <Badge variant="secondary" className="text-xs">
-                          MongoDB
-                        </Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-gray-900 border-gray-800">
-                    <CardContent className="p-6">
-                      <div className="text-purple-400 text-2xl mb-4">🔧</div>
-                      <h4 className="text-white font-semibold mb-3">Consultoría Tech</h4>
-                      <p className="text-gray-400 text-sm mb-4">
-                        Diseñé la arquitectura de microservicios para una plataforma de e-commerce que maneja 50K+
-                        usuarios concurrentes.
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary" className="text-xs">
-                          FastAPI
+                          Implementaciones
                         </Badge>
                         <Badge variant="secondary" className="text-xs">
-                          Docker
+                          Trello
                         </Badge>
                         <Badge variant="secondary" className="text-xs">
-                          Redis
+                          Capacitaciones
                         </Badge>
                       </div>
                     </CardContent>
@@ -321,8 +334,7 @@ export default function SimplePortfolioBlog() {
               <div className="max-w-4xl mx-auto text-center">
                 <h3 className="text-3xl font-bold mb-6">¿Tienes un proyecto en mente?</h3>
                 <p className="text-xl text-gray-400 mb-8">
-                  Estoy disponible para colaborar en proyectos desafiantes que requieran análisis funcional y diseño de
-                  soluciones técnicas innovadoras.
+                  Estoy disponible para colaborar en proyectos desafiantes.
                 </p>
                 <div className="flex items-center justify-center space-x-4">
                   <Button

@@ -6,9 +6,42 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Portfolio & Blog - Tu Nombre",
-  description: "Portfolio personal y blog sobre desarrollo y análisis funcional",
-    generator: 'v0.app'
+  title: "Sebastián Campo",
+  description:
+    "Desarrollador frontend con experiencia en análisis funcional y soporte técnico. Portfolio profesional, proyectos y blog técnico.",
+  keywords: [
+    "Sebastián Campo",
+    "Desarrollador Frontend",
+    "Frontend Developer",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Analista Funcional",
+    "Portfolio",
+    "Web Development",
+    "JavaScript",
+  ],
+  authors: [{ name: "Sebastián Campo" }],
+  creator: "Sebastián Campo",
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    url: "https://seba-campo.vercel.app/", // Asumiendo URL o placeholder
+    title: "Sebastián Campo | Desarrollador Frontend",
+    description:
+      "Desarrollador frontend con experiencia en análisis funcional, enfocado en construir soluciones alineadas al negocio y al usuario.",
+    siteName: "Sebastián Campo Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sebastián Campo | Desarrollador Frontend",
+    description: "Desarrollador frontend y analista funcional. Mira mis proyectos y experiencia.",
+    creator: "@seba_campo", // Placeholder si no tengo el handle real, pero mejor poner el nombre
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({
