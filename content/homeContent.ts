@@ -1,27 +1,44 @@
+import { CardDescription } from "@/components/ui/card";
 import { Calendar, Code, Database, Users } from "lucide-react";
+import { decodeFormState } from "next/dist/server/app-render/entry-base";
+import { title } from "process";
 
 const projects = [
     {
-        title: "E-commerce Dashboard",
-        description: "Dashboard de análisis para tienda online con métricas en tiempo real",
-        tech: ["React", "Node.js", "PostgreSQL"],
-        link: "#",
+        title: "PlannIt",
+        description: "Aplicación realtime full-stack para planificación de user stories y tareas",
+        tech: ["React", "NextJs", "Firebase", "Firestore"],
+        link: "https://plannit-nine.vercel.app/",
         status: "Completado",
     },
     {
-        title: "API Gateway",
-        description: "Gateway centralizado para microservicios con autenticación",
-        tech: ["FastAPI", "Docker", "Redis"],
-        link: "#",
-        status: "En desarrollo",
-    },
-    {
-        title: "CRM System",
-        description: "Sistema de gestión de clientes con automatización",
-        tech: ["Vue.js", "Python", "MongoDB"],
-        link: "#",
+        title: "CRM Online",
+        description: "Sistema tipo CRM con gestion de clientes y servicios",
+        tech: ["ExpressJs", "PostgreSQL", "Custom Components", "Github Actions"],
+        link: "https://seba-campo.github.io/jv-crm/",
         status: "Completado",
     },
+    {
+        title: "Piedra Papel o Tijera Online",
+        description: "Juego real time online de piedra papel o tijera.",
+        tech: ["Custom Components", "Firebase", "Firestore", "ExpressJs"],
+        link: "https://github.com/seba-campo/desafio-m6",
+        status: "Completado",
+    },
+    {
+        title: "ATM Api",
+        description: "ATM API para gestion de cajeros",
+        tech: [".Net", "Entity Framework", "PostgreSQL", "SaaS: Neon"],
+        link: "https://github.com/seba-campo/challenge-atm-api",
+        status: "Completado",
+    },
+    {
+        title: "Mailer API",
+        description: "API para envio de correos electrónicos, como el utilizado en Contacto",
+        tech: ["NodeJs", "ExpressJs"],
+        link: "https://github.com/seba-campo/mailer-api",
+        status: "Completado",
+    }
 ];
 
 const blogPosts = [
@@ -67,66 +84,36 @@ const stats = [
 
 const technicalProjects = [
     {
-        name: "Sistema de Gestión de Inventarios",
+        name: "PlannIt",
         description:
-            "Aplicación full-stack para control de inventarios con dashboard en tiempo real y alertas automáticas.",
-        technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
-        type: "Web Application",
-        year: "2024",
-        features: ["Dashboard en tiempo real", "Alertas automáticas", "Reportes PDF", "API REST"],
-        icon: "📦",
+            "Aplicación realtime full-stack para planificación de user stories y tareas",
+        technologies: ["React", "NextJs", "Firebase", "Firestore"],
+        type: "Web App",
+        year: "2025",
+        features: ["Juego en tiempo real", "Salas de chat", "Autenticación JWT", "Health checks"],
+        icon: "🎮",
         color: "text-blue-400",
     },
     {
-        name: "API Gateway Corporativo",
-        description: "Gateway centralizado para microservicios con autenticación JWT, rate limiting y monitoreo.",
-        technologies: ["FastAPI", "Redis", "Docker", "Nginx"],
-        type: "Backend Service",
-        year: "2023",
-        features: ["Autenticación JWT", "Rate limiting", "Logs centralizados", "Health checks"],
-        icon: "🔗",
+        name: "CRM Online",
+        description: "Sistema tipo CRM con gestion de clientes y servicios",
+        technologies: ["ExpressJs", "PostgreSQL", "Custom Components", "Github Actions"],
+        type: "Web App",
+        year: "2025",
+        features: ["Autenticación JWT", "Reporting", "Roles y Permisos"],
+        icon: "📊",
         color: "text-green-400",
     },
     {
-        name: "Dashboard de Analytics",
-        description: "Plataforma de visualización de datos con gráficos interactivos y exportación de reportes.",
-        technologies: ["Vue.js", "Python", "MongoDB", "Chart.js"],
-        type: "Data Visualization",
-        year: "2023",
-        features: ["Gráficos interactivos", "Filtros avanzados", "Exportación Excel", "Scheduled reports"],
-        icon: "📊",
+        name: "Piedra Papel o Tijera Online",
+        description: "Juego real time online de piedra papel o tijera.",
+        technologies: ["Custom Components", "Firebase", "Firestore", "ExpressJs"],
+        type: "Web App",
+        year: "2024",
+        features: ["Juego en tiempo real", "Salas de chat", "Autenticación JWT", "Health checks"],
+        icon: "🎮",
         color: "text-purple-400",
-    },
-    {
-        name: "Sistema de Notificaciones",
-        description: "Microservicio para envío de notificaciones multi-canal (email, SMS, push) con cola de mensajes.",
-        technologies: ["Python", "Celery", "RabbitMQ", "AWS SES"],
-        type: "Microservice",
-        year: "2022",
-        features: ["Multi-canal", "Cola de mensajes", "Retry automático", "Templates dinámicos"],
-        icon: "📧",
-        color: "text-yellow-400",
-    },
-    {
-        name: "CLI Tool para DevOps",
-        description: "Herramienta de línea de comandos para automatizar deployments y gestión de infraestructura.",
-        technologies: ["Python", "Click", "AWS CLI", "Terraform"],
-        type: "CLI Tool",
-        year: "2022",
-        features: ["Deploy automático", "Rollback seguro", "Config validation", "Multi-environment"],
-        icon: "⚡",
-        color: "text-orange-400",
-    },
-    {
-        name: "Bot de Slack para Reportes",
-        description: "Bot inteligente que genera reportes automáticos y responde consultas sobre métricas del negocio.",
-        technologies: ["Node.js", "Slack API", "PostgreSQL", "Cron"],
-        type: "Automation Bot",
-        year: "2021",
-        features: ["Comandos slash", "Reportes automáticos", "Queries en lenguaje natural", "Scheduled tasks"],
-        icon: "🤖",
-        color: "text-cyan-400",
-    },
+    }
 ];
 
 export {

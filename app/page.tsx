@@ -189,19 +189,19 @@ export default function SimplePortfolioBlog() {
                         Actualmente activo como desarrollador frontend, y anteriormente analista funcional de backoffice para producto de consumo masivo orientado a la compra de medicamentos
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Atlassian
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Jira
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           React
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           C #
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           PostgreSQL
                         </Badge>
                       </div>
@@ -219,16 +219,16 @@ export default function SimplePortfolioBlog() {
                         Realicé desarrollo frontend de aplicaciones web 3d para la industria de amoblamientos, y colaboré con la integracion a diversos ecommerce.
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Vanilla Javascript
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           UX/UI
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Integraciones ecommerce
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Jira
                         </Badge>
                       </div>
@@ -246,19 +246,19 @@ export default function SimplePortfolioBlog() {
                         Realicé soporte técnico de sistemas desktop y web para la industria de amoblamientos.
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Integraciones CNC
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Supervisor de procesos
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Implementaciones
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Trello
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
                           Capacitaciones
                         </Badge>
                       </div>
@@ -287,7 +287,7 @@ export default function SimplePortfolioBlog() {
                       <CardContent className="p-6">
                         <div className="flex items-start justify-between mb-4">
                           <div className={`text-3xl ${project.color}`}>{project.icon}</div>
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
                             {project.year}
                           </Badge>
                         </div>
@@ -296,7 +296,7 @@ export default function SimplePortfolioBlog() {
 
                         <div className="mb-4">
                           <div className="text-xs text-gray-500 mb-2">Tipo de proyecto</div>
-                          <Badge variant="secondary" className="text-xs">
+                          <Badge className="text-xs bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border-0">
                             {project.type}
                           </Badge>
                         </div>
@@ -316,7 +316,7 @@ export default function SimplePortfolioBlog() {
                           <div className="text-xs text-gray-500 mb-2">Stack tecnológico</div>
                           <div className="flex flex-wrap gap-2">
                             {project.technologies.map((tech, i) => (
-                              <Badge key={i} variant="outline" className="text-xs border-gray-600">
+                              <Badge key={i} variant="outline" className="text-xs border-gray-600 bg-white text-black">
                                 {tech}
                               </Badge>
                             ))}
@@ -362,7 +362,7 @@ export default function SimplePortfolioBlog() {
                   <Card key={index} className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
                     <CardHeader>
                       <div className="flex items-center justify-between">
-                        <CardTitle className="text-lg">{project.title}</CardTitle>
+                        <CardTitle className="text-lg text-white font-semibold mb-3">{project.title}</CardTitle>
                         <Badge
                           variant={project.status === "Completado" ? "default" : "secondary"}
                           className={project.status === "Completado" ? "bg-green-600" : "bg-yellow-600"}
@@ -375,7 +375,7 @@ export default function SimplePortfolioBlog() {
                       <p className="text-gray-400 text-sm">{project.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {project.tech.map((tech, i) => (
-                          <Badge key={i} variant="outline" className="text-xs">
+                          <Badge key={i} variant="outline" className="text-xs bg-white text-black">
                             {tech}
                           </Badge>
                         ))}
@@ -458,10 +458,9 @@ export default function SimplePortfolioBlog() {
                           className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                         >
                           <option value="">Selecciona un asunto</option>
-                          <option value="proyecto">Nuevo Proyecto</option>
+                          <option value="contacto">Contacto</option>
                           <option value="consultoria">Consultoría</option>
                           <option value="colaboracion">Colaboración</option>
-                          <option value="mentoria">Mentoría</option>
                           <option value="otro">Otro</option>
                         </select>
                       </div>
@@ -506,12 +505,14 @@ export default function SimplePortfolioBlog() {
                   <div className="space-y-2">
                     <div className="text-blue-400 text-2xl">📧</div>
                     <h4 className="font-semibold">Email</h4>
-                    <p className="text-gray-400 text-sm">tu@email.com</p>
+                    <p className="text-gray-400 text-sm">campo.sebastian44@gmail.com</p>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-green-400 text-2xl">💼</div>
-                    <h4 className="font-semibold">LinkedIn</h4>
-                    <p className="text-gray-400 text-sm">Conectemos profesionalmente</p>
+                    <a href="https://www.linkedin.com/in/seba-campo" target="_blank" className="block space-y-2">
+                      <div className="text-green-400 text-2xl">💼</div>
+                      <h4 className="font-semibold">LinkedIn</h4>
+                      <p className="text-gray-400 text-sm">Conectemos profesionalmente</p>
+                    </a>
                   </div>
                   <div className="space-y-2">
                     <div className="text-purple-400 text-2xl">⚡</div>
