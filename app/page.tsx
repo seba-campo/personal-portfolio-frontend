@@ -16,12 +16,15 @@ export default function SimplePortfolioBlog() {
   const { activeSection } = useHome()
 
   const renderContent = () => {
+
     switch (activeSection) {
       case "home":
+        fetch("https://mailer-api-qfoh.onrender.com/health");
         return <Home />
       case "portfolio":
         return <Portfolio />
       case "contact":
+        fetch("https://mailer-api-qfoh.onrender.com/health");
         return <Contact />
       default:
         return <div>Unknown Section</div>
