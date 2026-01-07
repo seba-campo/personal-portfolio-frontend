@@ -16,14 +16,14 @@ export function Header() {
                         <nav className="hidden md:flex space-x-6">
                             <button
                                 onClick={() => setActiveSection("home")}
-                                className={`px-3 py-2 rounded-md text-sm transition-colors ${activeSection === "home" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
+                                className={`cursor-pointer px-3 py-2 rounded-md text-sm transition-colors ${activeSection === "home" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
                                     }`}
                             >
                                 Inicio
                             </button>
                             <button
                                 onClick={() => setActiveSection("portfolio")}
-                                className={`px-3 py-2 rounded-md text-sm transition-colors ${activeSection === "portfolio" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
+                                className={`cursor-pointer px-3 py-2 rounded-md text-sm transition-colors ${activeSection === "portfolio" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
                                     }`}
                             >
                                 Portfolio
@@ -31,7 +31,7 @@ export function Header() {
                         </nav>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <Link
+                        <a
                             href="#"
                             onClick={(e) => {
                                 e.preventDefault()
@@ -40,13 +40,13 @@ export function Header() {
                             className="text-gray-400 hover:text-white transition-colors"
                         >
                             <Mail className="w-5 h-5" />
-                        </Link>
-                        <Link href="https://github.com/seba-campo" target="_blank" className="text-gray-400 hover:text-white transition-colors">
+                        </a>
+                        <a href="https://github.com/seba-campo" target="_blank" className="text-gray-400 hover:text-white transition-colors">
                             <Github className="w-5 h-5" />
-                        </Link>
-                        <Link href="https://linkedin.com/in/seba-campo" target="_blank" className="text-gray-400 hover:text-white transition-colors">
+                        </a>
+                        <a href="https://linkedin.com/in/seba-campo" target="_blank" className="text-gray-400 hover:text-white transition-colors">
                             <Linkedin className="w-5 h-5" />
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>

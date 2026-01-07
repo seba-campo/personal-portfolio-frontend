@@ -33,13 +33,13 @@ export function Home() {
                         </div>
                     </div>
                     <div className="flex items-center justify-center space-x-4">
-                        <Button className="bg-white text-black hover:bg-gray-200">
+                        <Button className="bg-white text-black hover:bg-gray-200 cursor-pointer">
                             <Download className="w-4 h-4 mr-2" />
                             Descargar CV
                         </Button>
                         <Button
                             variant="outline"
-                            className="border-gray-600 text-gray-300 hover:bg-gray-800 bg-transparent"
+                            className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white bg-transparent cursor-pointer"
                             onClick={() => setActiveSection("portfolio")}
                         >
                             Ver Proyectos
@@ -263,7 +263,7 @@ export function Home() {
                     </p>
                     <div className="flex items-center justify-center space-x-4">
                         <Button
-                            className="bg-blue-600 hover:bg-blue-700"
+                            className="bg-blue-600 hover:bg-blue-700 cursor-pointer"
                             onClick={() => setActiveSection("contact")}>
                             <Mail className="w-4 h-4 mr-2" />
                             Contactar

@@ -37,12 +37,13 @@ export function Portfolio() {
                                         </Badge>
                                     ))}
                                 </div>
-                                <Link
+                                <a
                                     href={project.link}
+                                    target="_blank"
                                     className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors"
                                 >
                                     Ver proyecto <ExternalLink className="w-3 h-3 ml-1" />
-                                </Link>
+                                </a>
                             </CardContent>
                         </Card>
                     ))}
