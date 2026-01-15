@@ -9,6 +9,10 @@ import { skills, stats, technicalProjects } from "@/content/homeContent";
 export function Home() {
     const { setActiveSection } = useHome();
 
+    function handleDownloadCv() {
+        window.open("https://drive.google.com/file/d/1PR6TXWARoUuIDGftEXilqF4my3es3U38/view?usp=sharing");
+    }
+
     return (
         <>
             <section className="py-20 px-6">
@@ -33,7 +37,9 @@ export function Home() {
                         </div>
                     </div>
                     <div className="flex items-center justify-center space-x-4">
-                        <Button className="bg-white text-black hover:bg-gray-200 cursor-pointer">
+                        <Button
+                            className="bg-white text-black hover:bg-gray-200 cursor-pointer"
+                            onClick={() => handleDownloadCv()}>
                             <Download className="w-4 h-4 mr-2" />
                             Descargar CV
                         </Button>
