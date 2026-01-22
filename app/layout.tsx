@@ -1,6 +1,7 @@
 import type React from "react"
-import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { Analytics } from "@vercel/analytics/react"
+import type { Metadata } from "next"
 import "./globals.css"
 import { HomeProvider } from "./useHome"
 
@@ -53,7 +54,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
-        <HomeProvider>{children}</HomeProvider>
+        <HomeProvider>
+          {children}
+          <Analytics />
+        </HomeProvider>
       </body>
     </html>
   )
