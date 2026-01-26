@@ -170,12 +170,7 @@ export function Contact() {
                 </Card>
 
                 {/* Contact Info */}
-                <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
-                    <div className="space-y-2">
-                        <div className="text-blue-400 text-2xl">📧</div>
-                        <h4 className="font-semibold">Email</h4>
-                        <p className="text-gray-400 text-sm">campo.sebastian44@gmail.com</p>
-                    </div>
+                <div className="mt-12 grid md:grid-cols-2 gap-8 text-center">
                     <div className="space-y-2">
                         <a href="https://www.linkedin.com/in/seba-campo" target="_blank" className="block space-y-2">
                             <div className="text-green-400 text-2xl">💼</div>

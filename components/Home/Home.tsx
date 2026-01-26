@@ -213,9 +213,21 @@ export function Home() {
                         {technicalProjects.map((project, index) => (
                             <Card
                                 key={index}
-                                className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:transform hover:scale-105"
+                                className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:transform hover:scale-105 relative overflow-hidden group"
                             >
-                                <CardContent className="p-6">
+                                {project.backgroundImage && (
+                                    <>
+                                        <div className="absolute inset-0 z-0">
+                                            <img
+                                                src={project.backgroundImage}
+                                                alt=""
+                                                className="w-full h-full object-cover opacity-40 transition-transform duration-300 group-hover:scale-110"
+                                            />
+                                        </div>
+                                        <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-gray-900/85 to-transparent" />
+                                    </>
+                                )}
+                                <CardContent className="p-6 relative z-10">
                                     <div className="flex items-start justify-between mb-4">
                                         <div className={`text-3xl ${project.color}`}>{project.icon}</div>
                                         <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
@@ -236,7 +248,7 @@ export function Home() {
                                         <div className="text-xs text-gray-500 mb-2">Características principales</div>
                                         <div className="flex flex-wrap gap-1">
                                             {project.features.map((feature, i) => (
-                                                <span key={i} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
+                                                <span key={i} className="text-xs bg-gray-800/80 backdrop-blur-sm text-gray-300 px-2 py-1 rounded">
                                                     {feature}
                                                 </span>
                                             ))}
@@ -247,7 +259,7 @@ export function Home() {
                                         <div className="text-xs text-gray-500 mb-2">Stack tecnológico</div>
                                         <div className="flex flex-wrap gap-2">
                                             {project.technologies.map((tech, i) => (
-                                                <Badge key={i} variant="outline" className="text-xs border-gray-600 bg-white text-black">
+                                                <Badge key={i} variant="outline" className="text-xs border-gray-600 bg-white/90 text-black">
                                                     {tech}
                                                 </Badge>
                                             ))}

@@ -1,9 +1,27 @@
-import { CardDescription } from "@/components/ui/card";
-import { Calendar, Code, Database, Users } from "lucide-react";
-import { decodeFormState } from "next/dist/server/app-render/entry-base";
-import { title } from "process";
+import { Calendar, Code, Database, Users, BarChart, Gamepad2 } from "lucide-react";
+import PlannitIcon from "@/components/ui/icons/plannit";
+import FastwaIcon from "@/components/ui/icons/fastwa";
+
+interface TechnicalProject {
+    name: string;
+    description: string;
+    technologies: string[];
+    type: string;
+    year: string;
+    features: string[];
+    icon: React.ReactNode;
+    color: string;
+    backgroundImage?: string;
+}
 
 const projects = [
+    {
+        title: "fastwa",
+        description: "Aplicación responsive y de single-purpose para generar y acortar links de whatsapp",
+        tech: ["Tailwind", "Vercel", "Google Analytics", "Google Adsense"],
+        link: "https://fastwa.me",
+        status: "Completado",
+    },
     {
         title: "PlannIt",
         description: "Aplicación realtime full-stack para planificación de user stories y tareas",
@@ -82,7 +100,18 @@ const stats = [
     { label: "Integracions con APIs y sistemas", value: "+10", icon: Database },
 ];
 
-const technicalProjects = [
+const technicalProjects: TechnicalProject[] = [
+    {
+        name: "fastwa",
+        description: "Generador y acortador de links de whatsapp, responsive y con soporte para compartir en redes sociales",
+        technologies: ["Vercel", "Tailwind"],
+        type: "Web App",
+        year: "2026",
+        features: ["SEO Optimization", "Google Analytics", "QR Generator", "Social Sharing"],
+        icon: <FastwaIcon />,
+        color: "text-green-400",
+        backgroundImage: "/fastwaBanner.png",
+    },
     {
         name: "PlannIt",
         description:
@@ -91,18 +120,9 @@ const technicalProjects = [
         type: "Web App",
         year: "2025",
         features: ["Juego en tiempo real", "Salas de chat", "Autenticación JWT", "Health checks"],
-        icon: "🎮",
+        icon: <PlannitIcon />,
         color: "text-blue-400",
-    },
-    {
-        name: "CRM Online",
-        description: "Sistema tipo CRM con gestion de clientes y servicios",
-        technologies: ["ExpressJs", "PostgreSQL", "Custom Components", "Github Actions"],
-        type: "Web App",
-        year: "2025",
-        features: ["Autenticación JWT", "Reporting", "Roles y Permisos"],
-        icon: "📊",
-        color: "text-green-400",
+        backgroundImage: "/plannitBanner.png",
     },
     {
         name: "Piedra Papel o Tijera Online",
@@ -111,8 +131,9 @@ const technicalProjects = [
         type: "Web App",
         year: "2024",
         features: ["Juego en tiempo real", "Salas de chat", "Autenticación JWT", "Health checks"],
-        icon: "🎮",
+        icon: <Gamepad2 />,
         color: "text-purple-400",
+        backgroundImage: "",
     }
 ];
 
