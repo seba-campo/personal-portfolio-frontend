@@ -82,11 +82,11 @@ Usa prefijos para aplicar estilos solo a partir de cierto tamaño de pantalla.
 
 ## Ejemplo Práctico (Botón)
 
-```jsx
+\`\`\`jsx
 <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">
   Click Aquí
 </button>
-```
+\`\`\`
 
 - Fondo azul (`bg-blue-600`) que se oscurece al pasar el mouse (`hover:bg-blue-700`).
 - Texto blanco y negrita (`text-white font-bold`).
