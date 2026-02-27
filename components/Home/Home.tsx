@@ -216,7 +216,8 @@ Me enfoco en liderar el desarrollo de features end-to-end: desde la comprensión
                         {technicalProjects.map((project, index) => (
                             <Card
                                 key={index}
-                                className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:transform hover:scale-105 relative overflow-hidden group"
+                                className="cursor-pointer bg-gray-900 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:transform hover:scale-105 relative overflow-hidden group"
+                                onClick={() => window.open(project.link, "_blank")}
                             >
                                 {project.backgroundImage && (
                                     <>
@@ -280,7 +281,7 @@ Me enfoco en liderar el desarrollo de features end-to-end: desde la comprensión
                 <div className="max-w-4xl mx-auto text-center">
                     <h3 className="text-3xl font-bold mb-6">¿Tienes un proyecto en mente?</h3>
                     <p className="text-xl text-gray-400 mb-8">
-                        Estoy disponible para colaborar en proyectos desafiantes.
+                        Contactemos!
                     </p>
                     <div className="flex items-center justify-center space-x-4">
                         <Button

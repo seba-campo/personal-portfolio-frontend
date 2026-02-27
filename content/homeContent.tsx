@@ -12,6 +12,7 @@ interface TechnicalProject {
     icon: React.ReactNode;
     color: string;
     backgroundImage?: string;
+    link?: string;
 }
 
 const projects = [
@@ -105,6 +106,7 @@ const technicalProjects: TechnicalProject[] = [
         name: "fastwa",
         description: "Generador y acortador de links de whatsapp, responsive y con soporte para compartir en redes sociales",
         technologies: ["Vercel", "Tailwind"],
+        link: "https://fastwa.me",
         type: "Web App",
         year: "2026",
         features: ["SEO Optimization", "Google Analytics", "QR Generator", "Social Sharing"],
@@ -114,6 +116,7 @@ const technicalProjects: TechnicalProject[] = [
     },
     {
         name: "PlannIt",
+        link: "https://plannit-nine.vercel.app/",
         description:
             "Aplicación realtime full-stack para planificación de user stories y tareas",
         technologies: ["React", "NextJs", "Firebase", "Firestore"],
@@ -127,6 +130,7 @@ const technicalProjects: TechnicalProject[] = [
     {
         name: "Piedra Papel o Tijera Online",
         description: "Juego real time online de piedra papel o tijera.",
+        link: "https://github.com/seba-campo/react-pet-finder",
         technologies: ["Custom Components", "Firebase", "Firestore", "ExpressJs"],
         type: "Web App",
         year: "2024",
