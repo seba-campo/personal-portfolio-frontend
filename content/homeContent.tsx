@@ -85,12 +85,12 @@ const blogPosts = [
 ];
 
 const skills = [
-    { name: "ReactJs", icon: "⚛️", level: undefined },
-    { name: "NodeJs", icon: "🔧", level: undefined },
-    { name: "PostgreSQL", icon: "🐘", level: "SaaS: Neon" },
-    { name: "Postman", icon: "🌐", level: undefined },
-    { name: "NextJs", icon: "💡", level: undefined },
-    { name: ".Net", icon: "🔗", level: "Entity Framework" },
+  { name: "React", icon: "⚛️", level: "Hooks • Context • Performance" },
+  { name: "Next.js", icon: "▲", level: "SSR • Routing • Optimización SEO" },
+  { name: "Frontend Architecture", icon: "🧩", level: "State Management • Escalabilidad" },
+  { name: "Product Thinking", icon: "📊", level: "Análisis funcional • Feature Ownership" },
+  { name: "Node.js", icon: "🔧", level: "APIs • Integraciones" },
+  { name: "PostgreSQL", icon: "🐘", level: "Modelado de datos" },
 ];
 
 const stats = [

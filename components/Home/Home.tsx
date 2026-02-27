@@ -22,9 +22,7 @@ export function Home() {
                     </h2>
                     <div className="text-xl text-blue-400 mb-6 font-medium">Desarrollador Frontend</div>
                     <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                        Desarrollador frontend con experiencia en análisis funcional y soporte técnico, enfocado en construir soluciones alineadas al negocio y al usuario.
-                        Trabajo en productos reales, integrando interfaces, flujos y APIs dentro de equipos multidisciplinarios.
-                        Actualmente busco evolucionar hacia un perfil fullstack, participando en soluciones end-to-end.
+                        Frontend Developer especializado en React y arquitectura escalable, con background en análisis funcional. Me enfoco en performance, UX y decisiones técnicas alineadas a negocio.
                     </p>
                     <div className="flex items-center justify-center space-x-6 text-sm text-gray-500 mb-8">
                         <div className="flex items-center">
@@ -76,10 +74,15 @@ export function Home() {
                         <div>
                             <h3 className="text-3xl font-bold mb-6">Sobre Mí</h3>
                             <div className="space-y-4 text-gray-300 leading-relaxed">
-                                <p>👋 Hola, soy Seba.</p>
-                                <p>Soy desarrollador frontend con experiencia en análisis funcional y soporte técnico, esto me permite comprender sistemas desde su uso real hasta su implementación técnica.</p>
+<p>👋 Hola, soy Seba.</p>
 
-                                <p>Disfruto analizar y resolver problemas, pensar soluciones escalables y acompañar su implementación con foco en la experiencia del usuario y la eficiencia. Actualmente formo parte del equipo de IT en Farmatouch, donde colaboro en el desarrollo de productos digitales de la industria farmacéutica. Mi objetivo es continuar creciendo hacia un perfil fullstack, ampliando mi impacto técnico en soluciones end-to-end.</p>
+<p>
+Frontend Developer especializado en React y arquitectura escalable, con background en análisis funcional y toma de decisiones orientadas a producto.
+</p>
+
+<p>
+Me enfoco en liderar el desarrollo de features end-to-end: desde la comprensión del problema de negocio hasta la implementación técnica en producción. Diseño soluciones frontend escalables con foco en performance, experiencia de usuario y mantenibilidad. He trabajado en equipos IT multidisciplinarios, participando activamente en definición de requerimientos, priorización técnica y ejecución en entornos productivos y de alto tráfico.
+</p>
                             </div>
                         </div>
                         <div>
