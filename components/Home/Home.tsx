@@ -10,7 +10,7 @@ export function Home() {
     const { setActiveSection } = useHome();
 
     function handleDownloadCv() {
-        window.open("https://drive.google.com/file/d/1PR6TXWARoUuIDGftEXilqF4my3es3U38/view?usp=sharing");
+        window.open("https://drive.google.com/file/d/1CYHOYqKEuwLNs5JiUJQZwrTQQVPO0h89/view?usp=sharing");
     }
 
     return (
