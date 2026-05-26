@@ -1,4 +1,4 @@
-import { Calendar, Code, Database, Users, BarChart, Gamepad2 } from "lucide-react";
+import { Calendar, Code, Database, Users, BarChart, Gamepad2, Book, BookAudio, BrainCircuit } from "lucide-react";
 import PlannitIcon from "@/components/ui/icons/plannit";
 import FastwaIcon from "@/components/ui/icons/fastwa";
 
@@ -13,9 +13,17 @@ interface TechnicalProject {
     color: string;
     backgroundImage?: string;
     link?: string;
+    badge?: string;
 }
 
 const projects = [
+    {
+        title: "Zenflow",
+        description: "Timer pomodoro con sonidos ambiente y tonos isocrónicos.",
+        tech: ["Tailwind", "NextJs", "Google Analytics", "React"],
+        link: "https://v0-timer-app-opal.vercel.app/",
+        status: "En desarrollo",
+    },
     {
         title: "fastwa",
         description: "Aplicación responsive y de single-purpose para generar y acortar links de whatsapp",
@@ -102,12 +110,25 @@ const stats = [
 ];
 
 const technicalProjects: TechnicalProject[] = [
+        {
+        name: "Zenflow",
+        description: "Pomodoro timer online, con sonidos ambientales y tonos isocrónicos.",
+        link: "https://v0-timer-app-opal.vercel.app/",
+        technologies: ["React","NextJs", "SSR", "TailwindCss"],
+        type: "Progressive WebApp",
+        year: "2026",
+        features: ["RealTime Audio Processing", "Focus timer"],
+        icon: <BrainCircuit />,
+        color: "text-purple-400",
+        backgroundImage: "/zenflowBanner.png",
+        badge: "En desarrollo",
+    },
     {
         name: "fastwa",
         description: "Generador y acortador de links de whatsapp, responsive y con soporte para compartir en redes sociales",
         technologies: ["Vercel", "Tailwind"],
         link: "https://fastwa.me",
-        type: "Web App",
+        type: "Progressive WebApp",
         year: "2026",
         features: ["SEO Optimization", "Google Analytics", "QR Generator", "Social Sharing"],
         icon: <FastwaIcon />,
@@ -127,18 +148,7 @@ const technicalProjects: TechnicalProject[] = [
         color: "text-blue-400",
         backgroundImage: "/plannitBanner.png",
     },
-    {
-        name: "Piedra Papel o Tijera Online",
-        description: "Juego real time online de piedra papel o tijera.",
-        link: "https://github.com/seba-campo/react-pet-finder",
-        technologies: ["Custom Components", "Firebase", "Firestore", "ExpressJs"],
-        type: "Web App",
-        year: "2024",
-        features: ["Juego en tiempo real", "Salas de chat", "Autenticación JWT", "Health checks"],
-        icon: <Gamepad2 />,
-        color: "text-purple-400",
-        backgroundImage: "",
-    }
+
 ];
 
 export {

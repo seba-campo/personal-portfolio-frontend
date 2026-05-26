@@ -234,9 +234,16 @@ Me enfoco en liderar el desarrollo de features end-to-end: desde la comprensión
                                 <CardContent className="p-6 relative z-10">
                                     <div className="flex items-start justify-between mb-4">
                                         <div className={`text-3xl ${project.color}`}>{project.icon}</div>
-                                        <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
-                                            {project.year}
-                                        </Badge>
+                                        <div className="flex flex-col items-end gap-1">
+                                            {project.badge && (
+                                                <Badge className="text-xs bg-yellow-500/15 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/25">
+                                                    {project.badge}
+                                                </Badge>
+                                            )}
+                                            <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
+                                                {project.year}
+                                            </Badge>
+                                        </div>
                                     </div>
                                     <h4 className="text-lg font-semibold mb-2 text-white">{project.name}</h4>
                                     <p className="text-gray-400 text-sm mb-4 leading-relaxed">{project.description}</p>
