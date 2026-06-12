@@ -1,11 +1,19 @@
 import type React from "react"
-import { Inter } from "next/font/google"
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { HomeProvider } from "./useHome"
+import { ThemeProvider } from "@/components/theme-provider"
 
-const inter = Inter({ subsets: ["latin"] })
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+})
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+})
 
 export const metadata: Metadata = {
   title: "Sebastián Campo",
@@ -53,12 +61,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
-      <body className={inter.className}>
-        <HomeProvider>
-          {children}
-          <Analytics />
-        </HomeProvider>
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-background antialiased`}
+    >
+      <body className="font-sans">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          <HomeProvider>
+            {children}
+            <Analytics />
+          </HomeProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
