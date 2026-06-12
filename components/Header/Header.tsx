@@ -1,5 +1,6 @@
 import { useHome } from "@/app/useHome"
 import { Github, Linkedin, Mail } from "lucide-react"
+import { ThemeToggle } from "@/components/themeToggle"
 
 export function Header() {
     const { activeSection, setActiveSection } = useHome();
@@ -48,6 +49,7 @@ export function Header() {
                         <div className="hidden md:block h-5 w-px bg-border" />
 
                         <div className="flex items-center gap-1">
+                            <ThemeToggle />
                             <a
                                 href="#"
                                 onClick={(e) => {

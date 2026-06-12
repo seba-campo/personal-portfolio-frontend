@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { HomeProvider } from "./useHome"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -60,12 +61,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-background antialiased`}>
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-background antialiased`}
+    >
       <body className="font-sans">
-        <HomeProvider>
-          {children}
-          <Analytics />
-        </HomeProvider>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          <HomeProvider>
+            {children}
+            <Analytics />
+          </HomeProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
