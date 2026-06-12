@@ -1,10 +1,56 @@
-import { MapPin, Calendar, Mail, Download } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card"
+import { MapPin, Calendar, Mail, Download, ArrowUpRight, ArrowDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { TypewriterText } from "../typewriterText";
 import { useHome } from "@/app/useHome";
 import { skills, stats, technicalProjects } from "@/content/homeContent";
+
+const marqueeTech = [
+    "React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "TailwindCSS",
+    "Firebase", "Análisis Funcional", "Product Thinking", "UX/UI", "C#", ".NET",
+];
+
+const experience = [
+    {
+        company: "Metafar",
+        role: "Frontend Developer / Analista Funcional",
+        meta: "Startup Healthtech",
+        description:
+            "Actualmente activo como desarrollador frontend, y anteriormente analista funcional de backoffice para un producto de consumo masivo orientado a la compra de medicamentos.",
+        tags: ["Atlassian", "Jira", "React", "C#", "PostgreSQL"],
+        link: "https://metafar.io/",
+        period: "Actual",
+    },
+    {
+        company: "Lepton Sistemas",
+        role: "Frontend Developer",
+        meta: "Software industrial",
+        description:
+            "Desarrollo frontend de aplicaciones web 3D para la industria de amoblamientos, y colaboración en la integración con diversos ecommerce.",
+        tags: ["Vanilla JS", "UX/UI", "Integraciones ecommerce", "Jira"],
+        link: "https://lepton.com.ar",
+        period: "Previo",
+    },
+    {
+        company: "Lepton Sistemas",
+        role: "Soporte Técnico",
+        meta: "Sistemas desktop & web",
+        description:
+            "Soporte técnico de sistemas desktop y web para la industria de amoblamientos, con foco en implementaciones y capacitaciones.",
+        tags: ["Integraciones CNC", "Supervisión de procesos", "Implementaciones", "Trello"],
+        link: "https://lepton.com.ar",
+        period: "Previo",
+    },
+];
+
+function SectionLabel({ index, title }: { index: string; title: string }) {
+    return (
+        <div className="flex items-center gap-4 mb-10">
+            <span className="font-mono text-xs text-primary tracking-widest">[{index}]</span>
+            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">{title}</h3>
+            <div className="h-px flex-1 bg-border" />
+        </div>
+    );
+}
 
 export function Home() {
     const { setActiveSection } = useHome();
@@ -15,90 +61,142 @@ export function Home() {
 
     return (
         <>
-            <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-4xl md:text-6xl font-bold mb-4">
-                        <TypewriterText text="Sebastián Campo" speed={100} />
-                    </h2>
-                    <div className="text-xl text-blue-400 mb-6 font-medium">Desarrollador Frontend</div>
-                    <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                        Frontend Developer especializado en React y arquitectura escalable, con background en análisis funcional. Me enfoco en performance, UX y decisiones técnicas alineadas a negocio.
-                    </p>
-                    <div className="flex items-center justify-center space-x-6 text-sm text-gray-500 mb-8">
-                        <div className="flex items-center">
-                            <MapPin className="w-4 h-4 mr-2" />
-                            Olivos, Buenos Aires
-                        </div>
-                        <div className="flex items-center">
-                            <Calendar className="w-4 h-4 mr-2" />
-                            Disponible para proyectos
+            {/* ===== HERO ===== */}
+            <section className="relative px-6 pt-20 pb-16 md:pt-28 md:pb-24 border-b border-border">
+                <div className="max-w-6xl mx-auto">
+                    <div className="flex items-center gap-3 mb-8 font-mono text-xs text-muted-foreground reveal-up">
+                        <span className="flex h-2 w-2 bg-primary animate-pulse" />
+                        <span className="tracking-widest uppercase">Disponible para proyectos</span>
+                    </div>
+
+                    <h1 className="font-sans font-bold tracking-tighter text-[clamp(2.75rem,11vw,8.5rem)] leading-[0.88] text-balance reveal-up">
+                        SEBASTIÁN
+                        <br />
+                        <span className="text-muted-foreground">CAMPO</span>
+                        <span className="text-primary">.</span>
+                    </h1>
+
+                    <div className="mt-10 grid md:grid-cols-12 gap-8 items-end">
+                        <p className="md:col-span-7 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                            Frontend Developer especializado en{" "}
+                            <span className="text-foreground">React</span> y arquitectura escalable, con
+                            background en análisis funcional. Construyo features end-to-end con foco en{" "}
+                            <span className="text-foreground">performance</span>,{" "}
+                            <span className="text-foreground">UX</span> y decisiones técnicas alineadas a negocio.
+                        </p>
+
+                        <div className="md:col-span-5 md:justify-self-end w-full md:w-auto">
+                            <div className="flex flex-col gap-3 font-mono text-xs">
+                                <div className="flex items-center gap-3 text-muted-foreground">
+                                    <MapPin className="w-4 h-4 text-primary" />
+                                    Olivos, Buenos Aires — AR
+                                </div>
+                                <div className="flex items-center gap-3 text-muted-foreground">
+                                    <Calendar className="w-4 h-4 text-primary" />
+                                    +5 años en IT, producto y sistemas
+                                </div>
+                            </div>
+                            <div className="flex flex-wrap gap-3 mt-6">
+                                <Button
+                                    className="rounded-none bg-foreground text-background hover:bg-primary hover:text-primary-foreground font-mono text-xs uppercase tracking-widest cursor-pointer"
+                                    onClick={handleDownloadCv}
+                                >
+                                    <Download className="w-4 h-4 mr-2" />
+                                    Descargar CV
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    className="rounded-none border-border bg-transparent text-foreground hover:bg-secondary font-mono text-xs uppercase tracking-widest cursor-pointer"
+                                    onClick={() => setActiveSection("portfolio")}
+                                >
+                                    Ver Proyectos
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-center space-x-4">
-                        <Button
-                            className="bg-white text-black hover:bg-gray-200 cursor-pointer"
-                            onClick={() => handleDownloadCv()}>
-                            <Download className="w-4 h-4 mr-2" />
-                            Descargar CV
-                        </Button>
-                        <Button
-                            variant="outline"
-                            className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white bg-transparent cursor-pointer"
-                            onClick={() => setActiveSection("portfolio")}
-                        >
-                            Ver Proyectos
-                        </Button>
+
+                    <div className="mt-16 flex items-center gap-3 font-mono text-xs text-muted-foreground">
+                        <ArrowDown className="w-4 h-4 animate-bounce" />
+                        <span className="tracking-widest uppercase">Scroll</span>
                     </div>
                 </div>
             </section>
-            <section className="py-16 px-6 bg-gray-900/50">
-                <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        {stats.map((stat, index) => (
-                            <div key={index} className="text-center">
-                                <div className="flex justify-center mb-4">
-                                    <stat.icon className="w-8 h-8 text-blue-400" />
-                                </div>
-                                <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                                <div className="text-sm text-gray-400">{stat.label}</div>
-                            </div>
+
+            {/* ===== TECH MARQUEE ===== */}
+            <section className="border-b border-border overflow-hidden bg-secondary/30">
+                <div className="flex whitespace-nowrap py-4">
+                    <div className="flex animate-marquee shrink-0">
+                        {[...marqueeTech, ...marqueeTech].map((tech, i) => (
+                            <span key={i} className="flex items-center font-mono text-sm text-muted-foreground">
+                                <span className="px-6 uppercase tracking-widest">{tech}</span>
+                                <span className="text-primary">/</span>
+                            </span>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* About Section */}
-            <section className="py-20 px-6">
+            {/* ===== STATS ===== */}
+            <section className="px-6 py-16 border-b border-border">
+                <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4">
+                    {stats.map((stat, index) => (
+                        <div
+                            key={index}
+                            className="group p-6 border-r border-border last:border-r-0 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r [&:nth-child(-n+2)]:border-b [&:nth-child(-n+2)]:md:border-b-0 border-border"
+                        >
+                            <div className="flex items-center justify-between mb-4">
+                                <stat.icon className="w-5 h-5 text-primary" />
+                                <span className="font-mono text-[10px] text-muted-foreground">{`0${index + 1}`}</span>
+                            </div>
+                            <div className="font-sans text-5xl font-bold tracking-tighter mb-3 group-hover:text-primary transition-colors">
+                                {stat.value}
+                            </div>
+                            <div className="font-mono text-xs text-muted-foreground leading-snug">{stat.label}</div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* ===== ABOUT ===== */}
+            <section className="px-6 py-20 border-b border-border">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h3 className="text-3xl font-bold mb-6">Sobre Mí</h3>
-                            <div className="space-y-4 text-gray-300 leading-relaxed">
-<p>👋 Hola, soy Seba.</p>
-
-<p>
-Frontend Developer especializado en React y arquitectura escalable, con background en análisis funcional y toma de decisiones orientadas a producto.
-</p>
-
-<p>
-Me enfoco en liderar el desarrollo de features end-to-end: desde la comprensión del problema de negocio hasta la implementación técnica en producción. Diseño soluciones frontend escalables con foco en performance, experiencia de usuario y mantenibilidad. He trabajado en equipos IT multidisciplinarios, participando activamente en definición de requerimientos, priorización técnica y ejecución en entornos productivos y de alto tráfico.
-</p>
+                    <SectionLabel index="01" title="Sobre mí" />
+                    <div className="grid lg:grid-cols-12 gap-12">
+                        <div className="lg:col-span-7">
+                            <p className="font-sans text-2xl md:text-3xl font-medium tracking-tight leading-snug text-balance mb-8">
+                                Hola, soy Seba. Diseño soluciones frontend escalables, desde el problema
+                                de negocio hasta la implementación en producción.
+                            </p>
+                            <div className="space-y-4 text-muted-foreground leading-relaxed">
+                                <p>
+                                    Me enfoco en liderar el desarrollo de features end-to-end: desde la comprensión
+                                    del problema de negocio hasta la implementación técnica en producción, con foco en
+                                    performance, experiencia de usuario y mantenibilidad.
+                                </p>
+                                <p>
+                                    He trabajado en equipos IT multidisciplinarios, participando activamente en la
+                                    definición de requerimientos, priorización técnica y ejecución en entornos
+                                    productivos y de alto tráfico.
+                                </p>
                             </div>
                         </div>
-                        <div>
-                            <h4 className="text-xl font-semibold mb-6">Habilidades Principales</h4>
-                            <div className="grid grid-cols-2 gap-4">
+
+                        <div className="lg:col-span-5">
+                            <div className="border-t border-border">
                                 {skills.map((skill, index) => (
-                                    <div key={index} className="bg-gray-900 rounded-lg p-4 border border-gray-800">
-                                        <div className="flex items-center space-x-3 mb-2">
-                                            <span className="text-2xl">{skill.icon}</span>
-                                            <div>
-                                                <div className="font-medium text-white">{skill.name}</div>
-                                                {skill.level != undefined && (
-                                                    <div className="text-xs text-gray-400 self-center">{skill.level}</div>
-                                                )}
-                                            </div>
-                                        </div>
+                                    <div
+                                        key={index}
+                                        className="group flex items-center gap-4 py-4 border-b border-border"
+                                    >
+                                        <span className="font-mono text-[10px] text-primary w-6">{`0${index + 1}`}</span>
+                                        <span className="font-mono text-sm font-medium uppercase tracking-wider w-40 shrink-0 group-hover:text-primary transition-colors">
+                                            {skill.name}
+                                        </span>
+                                        {skill.level != undefined && (
+                                            <span className="font-mono text-xs text-muted-foreground leading-snug">
+                                                {skill.level}
+                                            </span>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -107,195 +205,137 @@ Me enfoco en liderar el desarrollo de features end-to-end: desde la comprensión
                 </div>
             </section>
 
-            {/* Experience Highlights */}
-            <section className="py-16 px-6 bg-gray-900/30">
+            {/* ===== EXPERIENCE ===== */}
+            <section className="px-6 py-20 border-b border-border">
                 <div className="max-w-6xl mx-auto">
-                    <h3 className="text-3xl font-bold mb-12 text-center">Experiencia Destacada</h3>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <Card
-                            className="bg-gray-900 border-gray-800 cursor-pointer"
-                            onClick={() => window.open("https://metafar.io/", "_blank")}
-                        >
-                            <CardContent className="p-6">
-                                <div className="text-blue-400 text-2xl mb-4">⚕️</div>
-                                <h4 className="text-white font-semibold mb-3">Metafar - Startup Healthech</h4>
-                                <p className="text-gray-400 text-sm mb-4">
-                                    Actualmente activo como desarrollador frontend, y anteriormente analista funcional de backoffice para producto de consumo masivo orientado a la compra de medicamentos
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Atlassian
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Jira
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        React
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        C #
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        PostgreSQL
-                                    </Badge>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card
-                            className="bg-gray-900 border-gray-800 cursor-pointer"
-                            onClick={() => window.open("https://lepton.com.ar", "_blank")}
-                        >
-                            <CardContent className="p-6">
-                                <div className="text-green-400 text-2xl mb-4">🛠️</div>
-                                <h4 className="text-white font-semibold mb-3">Lepton Sistemas</h4>
-                                <p className="text-gray-400 text-sm mb-4">
-                                    Realicé desarrollo frontend de aplicaciones web 3d para la industria de amoblamientos, y colaboré con la integracion a diversos ecommerce.
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Vanilla Javascript
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        UX/UI
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Integraciones ecommerce
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Jira
-                                    </Badge>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card
-                            className="bg-gray-900 border-gray-800 cursor-pointer"
-                            onClick={() => window.open("https://lepton.com.ar", "_blank")}
-                        >
-                            <CardContent className="p-6">
-                                <div className="text-purple-400 text-2xl mb-4">🔩</div>
-                                <h4 className="text-white font-semibold mb-3">Lepton Sistemas</h4>
-                                <p className="text-gray-400 text-sm mb-4">
-                                    Realicé soporte técnico de sistemas desktop y web para la industria de amoblamientos.
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Integraciones CNC
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Supervisor de procesos
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Implementaciones
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Trello
-                                    </Badge>
-                                    <Badge variant="secondary" className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
-                                        Capacitaciones
-                                    </Badge>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </div>
-                </div>
-            </section>
-
-            {/* Technical Projects Section */}
-            <section className="py-20 px-6">
-                <div className="max-w-6xl mx-auto">
-                    <div className="text-center mb-12">
-                        <h3 className="text-3xl font-bold mb-4">Proyectos Técnicos Desarrollados</h3>
-                        <p className="text-gray-400 max-w-2xl mx-auto">
-                            Aplicaciones y sistemas que he programado desde cero, desde APIs hasta herramientas de
-                            automatización
-                        </p>
-                    </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {technicalProjects.map((project, index) => (
-                            <Card
+                    <SectionLabel index="02" title="Experiencia" />
+                    <div className="border-t border-border">
+                        {experience.map((exp, index) => (
+                            <button
                                 key={index}
-                                className="cursor-pointer bg-gray-900 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:transform hover:scale-105 relative overflow-hidden group"
-                                onClick={() => window.open(project.link, "_blank")}
+                                onClick={() => window.open(exp.link, "_blank")}
+                                className="group w-full text-left grid md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-border hover:bg-secondary/40 transition-colors px-2 -mx-2 cursor-pointer"
                             >
-                                {project.backgroundImage && (
-                                    <>
-                                        <div className="absolute inset-0 z-0">
-                                            <img
-                                                src={project.backgroundImage}
-                                                alt=""
-                                                className="w-full h-full object-cover opacity-40 transition-transform duration-300 group-hover:scale-110"
-                                            />
-                                        </div>
-                                        <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-gray-900/85 to-transparent" />
-                                    </>
-                                )}
-                                <CardContent className="p-6 relative z-10">
-                                    <div className="flex items-start justify-between mb-4">
-                                        <div className={`text-3xl ${project.color}`}>{project.icon}</div>
-                                        <div className="flex flex-col items-end gap-1">
-                                            {project.badge && (
-                                                <Badge className="text-xs bg-yellow-500/15 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/25">
-                                                    {project.badge}
-                                                </Badge>
-                                            )}
-                                            <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
-                                                {project.year}
-                                            </Badge>
-                                        </div>
+                                <div className="md:col-span-3 flex items-start justify-between md:block">
+                                    <div className="font-sans text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
+                                        {exp.company}
                                     </div>
-                                    <h4 className="text-lg font-semibold mb-2 text-white">{project.name}</h4>
-                                    <p className="text-gray-400 text-sm mb-4 leading-relaxed">{project.description}</p>
-
-                                    <div className="mb-4">
-                                        <div className="text-xs text-gray-500 mb-2">Tipo de proyecto</div>
-                                        <Badge className="text-xs bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border-0">
-                                            {project.type}
-                                        </Badge>
+                                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
+                                        {exp.period}
                                     </div>
-
-                                    <div className="mb-4">
-                                        <div className="text-xs text-gray-500 mb-2">Características principales</div>
-                                        <div className="flex flex-wrap gap-1">
-                                            {project.features.map((feature, i) => (
-                                                <span key={i} className="text-xs bg-gray-800/80 backdrop-blur-sm text-gray-300 px-2 py-1 rounded">
-                                                    {feature}
-                                                </span>
-                                            ))}
-                                        </div>
+                                </div>
+                                <div className="md:col-span-6">
+                                    <div className="font-mono text-sm text-foreground mb-1">{exp.role}</div>
+                                    <div className="font-mono text-[10px] uppercase tracking-widest text-primary mb-3">
+                                        {exp.meta}
                                     </div>
-
-                                    <div>
-                                        <div className="text-xs text-gray-500 mb-2">Stack tecnológico</div>
-                                        <div className="flex flex-wrap gap-2">
-                                            {project.technologies.map((tech, i) => (
-                                                <Badge key={i} variant="outline" className="text-xs border-gray-600 bg-white/90 text-black">
-                                                    {tech}
-                                                </Badge>
-                                            ))}
-                                        </div>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
+                                    <div className="flex flex-wrap gap-2 mt-4">
+                                        {exp.tags.map((tag, i) => (
+                                            <span
+                                                key={i}
+                                                className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground border border-border px-2 py-1"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
                                     </div>
-                                </CardContent>
-                            </Card>
+                                </div>
+                                <div className="md:col-span-3 flex md:justify-end items-start">
+                                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                </div>
+                            </button>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* CTA Section */}
-            <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h3 className="text-3xl font-bold mb-6">¿Tienes un proyecto en mente?</h3>
-                    <p className="text-xl text-gray-400 mb-8">
-                        Contactemos!
-                    </p>
-                    <div className="flex items-center justify-center space-x-4">
+            {/* ===== TECHNICAL PROJECTS ===== */}
+            <section className="px-6 py-20 border-b border-border">
+                <div className="max-w-6xl mx-auto">
+                    <SectionLabel index="03" title="Proyectos técnicos" />
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
+                        {technicalProjects.map((project, index) => (
+                            <button
+                                key={index}
+                                onClick={() => window.open(project.link, "_blank")}
+                                className="group relative text-left border-r border-b border-border overflow-hidden cursor-pointer min-h-[22rem] flex flex-col"
+                            >
+                                {project.backgroundImage && (
+                                    <div className="absolute inset-0 z-0">
+                                        <img
+                                            src={project.backgroundImage || "/placeholder.svg"}
+                                            alt=""
+                                            className="w-full h-full object-cover opacity-20 grayscale transition-all duration-500 group-hover:opacity-30 group-hover:grayscale-0 group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/90 to-card/40" />
+                                    </div>
+                                )}
+                                <div className="relative z-10 flex flex-col h-full p-6">
+                                    <div className="flex items-start justify-between mb-6">
+                                        <div className="text-primary text-2xl">{project.icon}</div>
+                                        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest">
+                                            {project.badge && (
+                                                <span className="text-primary border border-primary/40 px-2 py-1">
+                                                    {project.badge}
+                                                </span>
+                                            )}
+                                            <span className="text-muted-foreground border border-border px-2 py-1">
+                                                {project.year}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <h4 className="font-sans text-2xl font-bold tracking-tight mb-2 group-hover:text-primary transition-colors">
+                                        {project.name}
+                                    </h4>
+                                    <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+                                        {project.description}
+                                    </p>
+
+                                    <div className="mb-4">
+                                        <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-2">
+                                            {project.type}
+                                        </div>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {project.technologies.map((tech, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="font-mono text-[10px] uppercase tracking-wider text-foreground border border-border px-2 py-0.5"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground group-hover:text-primary transition-colors">
+                                        <span className="uppercase tracking-widest">Ver proyecto</span>
+                                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                    </div>
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ===== CTA ===== */}
+            <section className="px-6 py-24">
+                <div className="max-w-6xl mx-auto">
+                    <div className="flex flex-col items-start gap-8">
+                        <h3 className="font-sans font-bold tracking-tighter text-[clamp(2.25rem,8vw,6rem)] leading-[0.9] text-balance">
+                            ¿Tenés un proyecto
+                            <br />
+                            <span className="text-muted-foreground">en mente</span>
+                            <span className="text-primary">?</span>
+                        </h3>
                         <Button
-                            className="bg-blue-600 hover:bg-blue-700 cursor-pointer"
-                            onClick={() => setActiveSection("contact")}>
-                            <Mail className="w-4 h-4 mr-2" />
-                            Contactar
+                            className="rounded-none bg-primary text-primary-foreground hover:bg-foreground hover:text-background font-mono text-sm uppercase tracking-widest h-14 px-8 cursor-pointer"
+                            onClick={() => setActiveSection("contact")}
+                        >
+                            <Mail className="w-4 h-4 mr-3" />
+                            Hablemos
                         </Button>
                     </div>
                 </div>

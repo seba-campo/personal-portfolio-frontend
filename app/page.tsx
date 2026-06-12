@@ -32,7 +32,7 @@ export default function SimplePortfolioBlog() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
       <AnimatedBackground />
       <Header />
 
