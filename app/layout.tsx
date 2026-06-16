@@ -48,12 +48,21 @@ export const metadata: Metadata = {
     description:
       "Desarrollador frontend con experiencia en análisis funcional, enfocado en construir soluciones alineadas al negocio y al usuario.",
     siteName: "Sebastián Campo Portfolio",
+    images: [
+      {
+        url: `${BASE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "Sebastián Campo | Desarrollador Frontend",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sebastián Campo | Desarrollador Frontend",
     description: "Desarrollador frontend y analista funcional. Mira mis proyectos y experiencia.",
     creator: "@seba_campo",
+    images: [`${BASE_URL}/og-image.png`],
   },
   robots: {
     index: true,
