@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seba-campo.vercel.app/sitemap.xml

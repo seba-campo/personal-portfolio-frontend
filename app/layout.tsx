@@ -15,7 +15,10 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 })
 
+const BASE_URL = 'https://seba-campo.vercel.app'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: "Sebastián Campo",
   description:
     "Desarrollador frontend con experiencia en análisis funcional y soporte técnico. Portfolio profesional, proyectos y blog técnico.",
@@ -33,10 +36,13 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Sebastián Campo" }],
   creator: "Sebastián Campo",
+  alternates: {
+    canonical: BASE_URL,
+  },
   openGraph: {
     type: "website",
     locale: "es_AR",
-    url: "https://seba-campo.vercel.app/", // Asumiendo URL o placeholder
+    url: BASE_URL,
     title: "Sebastián Campo | Desarrollador Frontend",
     description:
       "Desarrollador frontend con experiencia en análisis funcional, enfocado en construir soluciones alineadas al negocio y al usuario.",
@@ -46,13 +52,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sebastián Campo | Desarrollador Frontend",
     description: "Desarrollador frontend y analista funcional. Mira mis proyectos y experiencia.",
-    creator: "@seba_campo", // Placeholder si no tengo el handle real, pero mejor poner el nombre
+    creator: "@seba_campo",
   },
   robots: {
     index: true,
     follow: true,
   },
-    generator: 'v0.app'
 }
 
 export default function RootLayout({
