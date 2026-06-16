@@ -5,6 +5,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { HomeProvider } from "./useHome"
 import { ThemeProvider } from "@/components/theme-provider"
+import { SeoSchemas } from "@/components/SeoSchemas"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -72,6 +73,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-background antialiased`}
     >
       <body className="font-sans">
+        <SeoSchemas />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <HomeProvider>
             {children}
