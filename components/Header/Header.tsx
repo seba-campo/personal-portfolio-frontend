@@ -1,6 +1,7 @@
 import { useHome } from "@/app/useHome"
 import { Github, Linkedin, Mail } from "lucide-react"
 import { ThemeToggle } from "@/components/themeToggle"
+import { styles } from "./Header.styles"
 
 export function Header() {
     const { activeSection, setActiveSection } = useHome();
@@ -11,44 +12,40 @@ export function Header() {
     ] as const;
 
     return (
-        <header className="border-b border-border sticky top-0 bg-background/80 backdrop-blur-md z-50">
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="flex items-center justify-between h-16">
+        <header className={styles.header}>
+            <div className={styles.container}>
+                <div className={styles.row}>
                     <button
                         onClick={() => setActiveSection("home")}
-                        className="group flex items-center gap-3 cursor-pointer"
+                        className={styles.logo.button}
                     >
-                        <span className="flex h-8 w-8 items-center justify-center border border-foreground bg-foreground text-background font-mono text-sm font-bold">
+                        <span className={styles.logo.mark}>
                             SC
                         </span>
-                        <span className="hidden sm:flex flex-col items-start leading-none">
-                            <span className="font-mono text-sm font-semibold tracking-tight">sebastian_campo</span>
-                            <span className="font-mono text-[10px] text-muted-foreground tracking-widest uppercase">
+                        <span className={styles.logo.textWrap}>
+                            <span className={styles.logo.name}>sebastian_campo</span>
+                            <span className={styles.logo.role}>
                                 frontend · analista
                             </span>
                         </span>
                     </button>
 
-                    <div className="flex items-center gap-6">
-                        <nav className="hidden md:flex items-center gap-1">
+                    <div className={styles.actionsWrap}>
+                        <nav className={styles.nav.wrap}>
                             {navItems.map((item) => (
                                 <button
                                     key={item.id}
                                     onClick={() => setActiveSection(item.id)}
-                                    className={`group cursor-pointer px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
-                                        activeSection === item.id
-                                            ? "text-foreground"
-                                            : "text-muted-foreground hover:text-foreground"
-                                    }`}
+                                    className={styles.nav.link(activeSection === item.id)}
                                 >
-                                    <span className="text-primary">[{item.index}]</span> {item.label}
+                                    <span className={styles.nav.linkIndex}>[{item.index}]</span> {item.label}
                                 </button>
                             ))}
                         </nav>
 
-                        <div className="hidden md:block h-5 w-px bg-border" />
+                        <div className={styles.divider} />
 
-                        <div className="flex items-center gap-1">
+                        <div className={styles.social.wrap}>
                             <ThemeToggle />
                             <a
                                 href="#"
@@ -56,26 +53,26 @@ export function Header() {
                                     e.preventDefault()
                                     setActiveSection("contact")
                                 }}
-                                className="flex h-9 w-9 items-center justify-center border border-transparent text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                                className={styles.social.link}
                                 aria-label="Contacto"
                             >
-                                <Mail className="w-4 h-4" />
+                                <Mail className={styles.social.icon} />
                             </a>
                             <a
                                 href="https://github.com/seba-campo"
                                 target="_blank"
-                                className="flex h-9 w-9 items-center justify-center border border-transparent text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                                className={styles.social.link}
                                 aria-label="GitHub"
                             >
-                                <Github className="w-4 h-4" />
+                                <Github className={styles.social.icon} />
                             </a>
                             <a
                                 href="https://linkedin.com/in/seba-campo"
                                 target="_blank"
-                                className="flex h-9 w-9 items-center justify-center border border-transparent text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                                className={styles.social.link}
                                 aria-label="LinkedIn"
                             >
-                                <Linkedin className="w-4 h-4" />
+                                <Linkedin className={styles.social.icon} />
                             </a>
                         </div>
                     </div>

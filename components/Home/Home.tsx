@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { useHome } from "@/app/useHome";
 import { skills, stats, technicalProjects } from "@/content/homeContent";
+import { styles } from "./Home.styles";
 
 const marqueeTech = [
     "React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "TailwindCSS",
@@ -44,10 +45,10 @@ const experience = [
 
 function SectionLabel({ index, title }: { index: string; title: string }) {
     return (
-        <div className="flex items-center gap-4 mb-10">
-            <span className="font-mono text-xs text-primary tracking-widest">[{index}]</span>
-            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">{title}</h3>
-            <div className="h-px flex-1 bg-border" />
+        <div className={styles.sectionLabel.wrapper}>
+            <span className={styles.sectionLabel.index}>[{index}]</span>
+            <h3 className={styles.sectionLabel.title}>{title}</h3>
+            <div className={styles.sectionLabel.line} />
         </div>
     );
 }
@@ -56,57 +57,57 @@ export function Home() {
     const { setActiveSection } = useHome();
 
     function handleDownloadCv() {
-        window.open("https://drive.google.com/file/d/1CYHOYqKEuwLNs5JiUJQZwrTQQVPO0h89/view?usp=sharing");
+        window.open("/cv-sebastian-campo.pdf", "_blank");
     }
 
     return (
         <>
             {/* ===== HERO ===== */}
-            <section className="relative px-6 pt-20 pb-16 md:pt-28 md:pb-24 border-b border-border">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex items-center gap-3 mb-8 font-mono text-xs text-muted-foreground reveal-up">
-                        <span className="flex h-2 w-2 bg-primary animate-pulse" />
-                        <span className="tracking-widest uppercase">Disponible para proyectos</span>
+            <section className={styles.hero.section}>
+                <div className={styles.hero.container}>
+                    <div className={styles.hero.badgeWrap}>
+                        <span className={styles.hero.badgeDot} />
+                        <span className={styles.hero.badgeText}>Disponible para proyectos</span>
                     </div>
 
-                    <h1 className="font-sans font-bold tracking-tighter text-[clamp(2.75rem,11vw,8.5rem)] leading-[0.88] text-balance reveal-up">
+                    <h1 className={styles.hero.title}>
                         SEBASTIÁN
                         <br />
-                        <span className="text-muted-foreground">CAMPO</span>
-                        <span className="text-primary">.</span>
+                        <span className={styles.hero.titleSub}>CAMPO</span>
+                        <span className={styles.hero.titleDot}>.</span>
                     </h1>
 
-                    <div className="mt-10 grid md:grid-cols-12 gap-8 items-end">
-                        <p className="md:col-span-7 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                    <div className={styles.hero.row}>
+                        <p className={styles.hero.description}>
                             Frontend Developer especializado en{" "}
-                            <span className="text-foreground">React</span> y arquitectura escalable, con
+                            <span className={styles.hero.descriptionHighlight}>React</span> y arquitectura escalable, con
                             background en análisis funcional. Construyo features end-to-end con foco en{" "}
-                            <span className="text-foreground">performance</span>,{" "}
-                            <span className="text-foreground">UX</span> y decisiones técnicas alineadas a negocio.
+                            <span className={styles.hero.descriptionHighlight}>performance</span>,{" "}
+                            <span className={styles.hero.descriptionHighlight}>UX</span> y decisiones técnicas alineadas a negocio.
                         </p>
 
-                        <div className="md:col-span-5 md:justify-self-end w-full md:w-auto">
-                            <div className="flex flex-col gap-3 font-mono text-xs">
-                                <div className="flex items-center gap-3 text-muted-foreground">
-                                    <MapPin className="w-4 h-4 text-primary" />
+                        <div className={styles.hero.infoWrap}>
+                            <div className={styles.hero.infoList}>
+                                <div className={styles.hero.infoItem}>
+                                    <MapPin className={styles.hero.infoIcon} />
                                     Olivos, Buenos Aires — AR
                                 </div>
-                                <div className="flex items-center gap-3 text-muted-foreground">
-                                    <Calendar className="w-4 h-4 text-primary" />
+                                <div className={styles.hero.infoItem}>
+                                    <Calendar className={styles.hero.infoIcon} />
                                     +5 años en IT, producto y sistemas
                                 </div>
                             </div>
-                            <div className="flex flex-wrap gap-3 mt-6">
+                            <div className={styles.hero.buttonsWrap}>
                                 <Button
-                                    className="rounded-none bg-foreground text-background hover:bg-primary hover:text-primary-foreground font-mono text-xs uppercase tracking-widest cursor-pointer"
+                                    className={styles.hero.downloadButton}
                                     onClick={handleDownloadCv}
                                 >
-                                    <Download className="w-4 h-4 mr-2" />
+                                    <Download className={styles.hero.downloadIcon} />
                                     Descargar CV
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    className="rounded-none border-border bg-transparent text-foreground hover:bg-secondary font-mono text-xs uppercase tracking-widest cursor-pointer"
+                                    className={styles.hero.portfolioButton}
                                     onClick={() => setActiveSection("portfolio")}
                                 >
                                     Ver Proyectos
@@ -115,21 +116,21 @@ export function Home() {
                         </div>
                     </div>
 
-                    <div className="mt-16 flex items-center gap-3 font-mono text-xs text-muted-foreground">
-                        <ArrowDown className="w-4 h-4 animate-bounce" />
-                        <span className="tracking-widest uppercase">Scroll</span>
+                    <div className={styles.hero.scrollWrap}>
+                        <ArrowDown className={styles.hero.scrollIcon} />
+                        <span className={styles.hero.scrollText}>Scroll</span>
                     </div>
                 </div>
             </section>
 
             {/* ===== TECH MARQUEE ===== */}
-            <section className="border-b border-border overflow-hidden bg-secondary/30">
-                <div className="flex whitespace-nowrap py-4">
-                    <div className="flex animate-marquee shrink-0">
+            <section className={styles.marquee.section}>
+                <div className={styles.marquee.track}>
+                    <div className={styles.marquee.group}>
                         {[...marqueeTech, ...marqueeTech].map((tech, i) => (
-                            <span key={i} className="flex items-center font-mono text-sm text-muted-foreground">
-                                <span className="px-6 uppercase tracking-widest">{tech}</span>
-                                <span className="text-primary">/</span>
+                            <span key={i} className={styles.marquee.item}>
+                                <span className={styles.marquee.itemText}>{tech}</span>
+                                <span className={styles.marquee.itemSlash}>/</span>
                             </span>
                         ))}
                     </div>
@@ -137,37 +138,37 @@ export function Home() {
             </section>
 
             {/* ===== STATS ===== */}
-            <section className="px-6 py-16 border-b border-border">
-                <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4">
+            <section className={styles.stats.section}>
+                <div className={styles.stats.grid}>
                     {stats.map((stat, index) => (
                         <div
                             key={index}
-                            className="group p-6 border-r border-border last:border-r-0 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r [&:nth-child(-n+2)]:border-b [&:nth-child(-n+2)]:md:border-b-0 border-border"
+                            className={styles.stats.card}
                         >
-                            <div className="flex items-center justify-between mb-4">
-                                <stat.icon className="w-5 h-5 text-primary" />
-                                <span className="font-mono text-[10px] text-muted-foreground">{`0${index + 1}`}</span>
+                            <div className={styles.stats.cardHeader}>
+                                <stat.icon className={styles.stats.cardIcon} />
+                                <span className={styles.stats.cardIndex}>{`0${index + 1}`}</span>
                             </div>
-                            <div className="font-sans text-5xl font-bold tracking-tighter mb-3 group-hover:text-primary transition-colors">
+                            <div className={styles.stats.cardValue}>
                                 {stat.value}
                             </div>
-                            <div className="font-mono text-xs text-muted-foreground leading-snug">{stat.label}</div>
+                            <div className={styles.stats.cardLabel}>{stat.label}</div>
                         </div>
                     ))}
                 </div>
             </section>
 
             {/* ===== ABOUT ===== */}
-            <section className="px-6 py-20 border-b border-border">
-                <div className="max-w-6xl mx-auto">
+            <section className={styles.about.section}>
+                <div className={styles.about.container}>
                     <SectionLabel index="01" title="Sobre mí" />
-                    <div className="grid lg:grid-cols-12 gap-12">
-                        <div className="lg:col-span-7">
-                            <p className="font-sans text-2xl md:text-3xl font-medium tracking-tight leading-snug text-balance mb-8">
+                    <div className={styles.about.grid}>
+                        <div className={styles.about.textCol}>
+                            <p className={styles.about.lead}>
                                 Hola, soy Seba. Diseño soluciones frontend escalables, desde el problema
                                 de negocio hasta la implementación en producción.
                             </p>
-                            <div className="space-y-4 text-muted-foreground leading-relaxed">
+                            <div className={styles.about.paragraphs}>
                                 <p>
                                     Me enfoco en liderar el desarrollo de features end-to-end: desde la comprensión
                                     del problema de negocio hasta la implementación técnica en producción, con foco en
@@ -181,19 +182,19 @@ export function Home() {
                             </div>
                         </div>
 
-                        <div className="lg:col-span-5">
-                            <div className="border-t border-border">
+                        <div className={styles.about.skillsCol}>
+                            <div className={styles.about.skillsList}>
                                 {skills.map((skill, index) => (
                                     <div
                                         key={index}
-                                        className="group flex items-center gap-4 py-4 border-b border-border"
+                                        className={styles.about.skillItem}
                                     >
-                                        <span className="font-mono text-[10px] text-primary w-6">{`0${index + 1}`}</span>
-                                        <span className="font-mono text-sm font-medium uppercase tracking-wider w-40 shrink-0 group-hover:text-primary transition-colors">
+                                        <span className={styles.about.skillIndex}>{`0${index + 1}`}</span>
+                                        <span className={styles.about.skillName}>
                                             {skill.name}
                                         </span>
                                         {skill.level != undefined && (
-                                            <span className="font-mono text-xs text-muted-foreground leading-snug">
+                                            <span className={styles.about.skillLevel}>
                                                 {skill.level}
                                             </span>
                                         )}
@@ -206,43 +207,43 @@ export function Home() {
             </section>
 
             {/* ===== EXPERIENCE ===== */}
-            <section className="px-6 py-20 border-b border-border">
-                <div className="max-w-6xl mx-auto">
+            <section className={styles.experience.section}>
+                <div className={styles.experience.container}>
                     <SectionLabel index="02" title="Experiencia" />
-                    <div className="border-t border-border">
+                    <div className={styles.experience.list}>
                         {experience.map((exp, index) => (
                             <button
                                 key={index}
                                 onClick={() => window.open(exp.link, "_blank")}
-                                className="group w-full text-left grid md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-border hover:bg-secondary/40 transition-colors px-2 -mx-2 cursor-pointer"
+                                className={styles.experience.item}
                             >
-                                <div className="md:col-span-3 flex items-start justify-between md:block">
-                                    <div className="font-sans text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
+                                <div className={styles.experience.colLeft}>
+                                    <div className={styles.experience.company}>
                                         {exp.company}
                                     </div>
-                                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
+                                    <div className={styles.experience.period}>
                                         {exp.period}
                                     </div>
                                 </div>
-                                <div className="md:col-span-6">
-                                    <div className="font-mono text-sm text-foreground mb-1">{exp.role}</div>
-                                    <div className="font-mono text-[10px] uppercase tracking-widest text-primary mb-3">
+                                <div className={styles.experience.colMid}>
+                                    <div className={styles.experience.role}>{exp.role}</div>
+                                    <div className={styles.experience.meta}>
                                         {exp.meta}
                                     </div>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
-                                    <div className="flex flex-wrap gap-2 mt-4">
+                                    <p className={styles.experience.description}>{exp.description}</p>
+                                    <div className={styles.experience.tagsWrap}>
                                         {exp.tags.map((tag, i) => (
                                             <span
                                                 key={i}
-                                                className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground border border-border px-2 py-1"
+                                                className={styles.experience.tag}
                                             >
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
-                                <div className="md:col-span-3 flex md:justify-end items-start">
-                                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                <div className={styles.experience.colRight}>
+                                    <ArrowUpRight className={styles.experience.arrowIcon} />
                                 </div>
                             </button>
                         ))}
@@ -251,57 +252,57 @@ export function Home() {
             </section>
 
             {/* ===== TECHNICAL PROJECTS ===== */}
-            <section className="px-6 py-20 border-b border-border">
-                <div className="max-w-6xl mx-auto">
+            <section className={styles.projects.section}>
+                <div className={styles.projects.container}>
                     <SectionLabel index="03" title="Proyectos técnicos" />
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
+                    <div className={styles.projects.grid}>
                         {technicalProjects.map((project, index) => (
                             <button
                                 key={index}
                                 onClick={() => window.open(project.link, "_blank")}
-                                className="group relative text-left border-r border-b border-border overflow-hidden cursor-pointer min-h-[22rem] flex flex-col"
+                                className={styles.projects.card}
                             >
                                 {project.backgroundImage && (
-                                    <div className="absolute inset-0 z-0">
+                                    <div className={styles.projects.imageWrap}>
                                         <img
                                             src={project.backgroundImage || "/placeholder.svg"}
                                             alt=""
-                                            className="w-full h-full object-cover opacity-20 grayscale transition-all duration-500 group-hover:opacity-30 group-hover:grayscale-0 group-hover:scale-105"
+                                            className={styles.projects.image}
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/90 to-card/40" />
+                                        <div className={styles.projects.imageGradient} />
                                     </div>
                                 )}
-                                <div className="relative z-10 flex flex-col h-full p-6">
-                                    <div className="flex items-start justify-between mb-6">
-                                        <div className="text-primary text-2xl">{project.icon}</div>
-                                        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest">
+                                <div className={styles.projects.content}>
+                                    <div className={styles.projects.header}>
+                                        <div className={styles.projects.icon}>{project.icon}</div>
+                                        <div className={styles.projects.badgesWrap}>
                                             {project.badge && (
-                                                <span className="text-primary border border-primary/40 px-2 py-1">
+                                                <span className={styles.projects.badge}>
                                                     {project.badge}
                                                 </span>
                                             )}
-                                            <span className="text-muted-foreground border border-border px-2 py-1">
+                                            <span className={styles.projects.yearBadge}>
                                                 {project.year}
                                             </span>
                                         </div>
                                     </div>
 
-                                    <h4 className="font-sans text-2xl font-bold tracking-tight mb-2 group-hover:text-primary transition-colors">
+                                    <h4 className={styles.projects.title}>
                                         {project.name}
                                     </h4>
-                                    <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+                                    <p className={styles.projects.description}>
                                         {project.description}
                                     </p>
 
-                                    <div className="mb-4">
-                                        <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-2">
+                                    <div className={styles.projects.typeWrap}>
+                                        <div className={styles.projects.typeLabel}>
                                             {project.type}
                                         </div>
-                                        <div className="flex flex-wrap gap-1.5">
+                                        <div className={styles.projects.techWrap}>
                                             {project.technologies.map((tech, i) => (
                                                 <span
                                                     key={i}
-                                                    className="font-mono text-[10px] uppercase tracking-wider text-foreground border border-border px-2 py-0.5"
+                                                    className={styles.projects.tech}
                                                 >
                                                     {tech}
                                                 </span>
@@ -309,9 +310,9 @@ export function Home() {
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground group-hover:text-primary transition-colors">
-                                        <span className="uppercase tracking-widest">Ver proyecto</span>
-                                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                    <div className={styles.projects.footer}>
+                                        <span className={styles.projects.footerText}>Ver proyecto</span>
+                                        <ArrowUpRight className={styles.projects.footerIcon} />
                                     </div>
                                 </div>
                             </button>
@@ -321,20 +322,20 @@ export function Home() {
             </section>
 
             {/* ===== CTA ===== */}
-            <section className="px-6 py-24">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col items-start gap-8">
-                        <h3 className="font-sans font-bold tracking-tighter text-[clamp(2.25rem,8vw,6rem)] leading-[0.9] text-balance">
+            <section className={styles.cta.section}>
+                <div className={styles.cta.container}>
+                    <div className={styles.cta.wrap}>
+                        <h3 className={styles.cta.title}>
                             ¿Tenés un proyecto
                             <br />
-                            <span className="text-muted-foreground">en mente</span>
-                            <span className="text-primary">?</span>
+                            <span className={styles.cta.titleSub}>en mente</span>
+                            <span className={styles.cta.titleDot}>?</span>
                         </h3>
                         <Button
-                            className="rounded-none bg-primary text-primary-foreground hover:bg-foreground hover:text-background font-mono text-sm uppercase tracking-widest h-14 px-8 cursor-pointer"
+                            className={styles.cta.button}
                             onClick={() => setActiveSection("contact")}
                         >
-                            <Mail className="w-4 h-4 mr-3" />
+                            <Mail className={styles.cta.buttonIcon} />
                             Hablemos
                         </Button>
                     </div>
