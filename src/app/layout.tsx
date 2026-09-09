@@ -1,6 +1,6 @@
 import type React from "react"
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/react"
+import Script from "next/script"
 import type { Metadata } from "next"
 import "./globals.css"
 import { HomeProvider } from "./useHome"
@@ -17,6 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 const BASE_URL = 'https://seba-campo.vercel.app'
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -84,11 +85,24 @@ export default function RootLayout({
       <body className="font-sans">
         <SeoSchemas />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          <HomeProvider>
-            {children}
-            <Analytics />
-          </HomeProvider>
+          <HomeProvider>{children}</HomeProvider>
         </ThemeProvider>
+        {process.env.NODE_ENV === "production" && GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )
