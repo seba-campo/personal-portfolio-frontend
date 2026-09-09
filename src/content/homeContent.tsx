@@ -68,6 +68,63 @@ const projects = [
     }
 ];
 
+interface Certificate {
+    title: string;
+    issuer: string;
+    date: string;
+    credentialUrl?: string;
+    // Rutas a las imágenes del certificado (subirlas a /public/certificates), una por archivo/página.
+    images?: string[];
+    status?: string;
+}
+
+// TODO: reemplazar con las certificaciones reales (nombre, entidad emisora, fecha, link de credencial e imágenes)
+const certificates: Certificate[] = [
+    {
+        title: "Certificación en Ciencia de Datos",
+        issuer: "ITBA University",
+        date: "2026",
+        credentialUrl: undefined,
+        images: [],
+        status: "En curso",
+    },
+    {
+        title: "Skills para agentes de IA: Qué son, cómo usarlos y cómo crear skills",
+        issuer: "LinkedIn",
+        date: "2026",
+        credentialUrl: "https://www.linkedin.com/learning/certificates/a2a858b80ccbdc8cb91fe90a67ac405fff50cd7462af013eec2e2914e1791c48",
+        images: ["/ia_skills_lkdn.jpg"],
+    },
+    {
+        title: "Critical Thinking & Problem Solving",
+        issuer: "Santander Open Academy",
+        date: "2025",
+        credentialUrl: undefined,
+        images: ["/stdr_oa.jpg"],
+    },
+    {
+        title: "Certificado EF SET Inglés 72/100 (C2 Proficiente)",
+        issuer: "EF SET",
+        date: "2025",
+        credentialUrl: 'https://cert.efset.org/es/NdGQNn',
+        images: ["/ef_set.jpg"],
+    },
+    {
+        title: "SCRUM con un Café",
+        issuer: "LinkedIn",
+        date: "2023",
+        credentialUrl: "https://www.linkedin.com/learning/certificates/ad195611a15bfecd1c961199113c913dcdbf1900da0c4349756edfbf0f680794",
+        images: ["/scrum_lkdn.png"],
+    },
+    {
+        title: "Frontend Fullstack Developer - Apx School",
+        issuer: "Apx School / Henry",
+        date: "2022-2024",
+        credentialUrl: "https://apx.school/profiles/ded4219d-f728-4215-8d37-d7b28d756a75/web-2",
+        images: ["/apx_cert_1.jpg", "/apx_cert_2.jpg", "/apx_cert_3.jpg"],
+    },
+];
+
 const blogPosts = [
     {
         title: "Cómo implementar un API Gateway escalable",
@@ -153,6 +210,7 @@ const technicalProjects: TechnicalProject[] = [
 
 export {
     projects,
+    certificates,
     blogPosts,
     skills,
     stats,

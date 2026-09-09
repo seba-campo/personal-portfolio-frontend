@@ -1,0 +1,57 @@
+import { cn } from "@/lib/utils"
+
+export const styles = {
+    section: "px-6 py-20 min-h-[70vh]",
+    container: "max-w-6xl mx-auto",
+    label: {
+        wrap: "flex items-center gap-4 mb-10",
+        index: "font-mono text-xs text-primary tracking-widest",
+        title: "font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground",
+        line: "h-px flex-1 bg-border",
+    },
+    heading: "font-sans font-bold tracking-tighter text-[clamp(2.5rem,9vw,7rem)] leading-[0.9] mb-4 text-balance",
+    headingDot: "text-primary",
+    description: "text-muted-foreground max-w-xl mb-16 leading-relaxed",
+    list: "border-t border-border",
+    item: "group grid md:grid-cols-12 gap-4 md:gap-8 items-start py-7 border-b border-border hover:bg-secondary/40 transition-colors px-2 -mx-2",
+    index: "md:col-span-1 font-mono text-xs text-primary pt-1",
+    titleCol: "md:col-span-4",
+    titleRow: "flex items-center gap-3",
+    title: "font-sans text-xl md:text-2xl font-bold tracking-tight group-hover:text-primary transition-colors",
+    status: (isCompleted: boolean) => cn(
+        "inline-block mt-2 font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border",
+        isCompleted ? "border-border text-muted-foreground" : "border-primary/40 text-primary"
+    ),
+    descriptionCol: "md:col-span-5",
+    itemDescription: "text-sm text-muted-foreground leading-relaxed mb-3",
+    techWrap: "flex flex-wrap gap-1.5",
+    tech: "font-mono text-[10px] uppercase tracking-wider text-muted-foreground border border-border px-2 py-0.5",
+    arrowCol: "md:col-span-2 flex md:justify-end items-start",
+    arrowIcon: "w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform",
+
+    certSectionLabelWrap: cn("flex items-center gap-4 mb-10", "mt-24 md:mt-32"),
+    subheading: "font-sans font-bold tracking-tight text-3xl md:text-5xl mb-10 mt-24 text-balance",
+    certItem: "group grid md:grid-cols-12 gap-4 md:gap-8 items-start py-7 border-b border-border hover:bg-secondary/40 transition-colors px-2 -mx-2",
+    certIndex: "md:col-span-1 font-mono text-xs text-primary pt-1",
+    certTitleCol: "md:col-span-6",
+    certTitle: "font-sans text-xl md:text-2xl font-bold tracking-tight group-hover:text-primary transition-colors",
+    certIssuer: "inline-block mt-2 font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border border-border text-muted-foreground",
+    certStatus: "inline-block mt-2 ml-2 font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border border-primary/40 text-primary",
+    certDateCol: "md:col-span-2 flex md:items-start",
+    certDate: "font-mono text-xs text-muted-foreground pt-1",
+    certImagesCol: "md:col-span-2 flex items-start justify-center",
+    certImagesWrap: "flex flex-wrap gap-1.5 justify-center",
+    certImageThumb: "relative w-9 h-9 border border-border overflow-hidden shrink-0 hover:border-primary transition-colors p-0 bg-transparent appearance-none cursor-pointer",
+    certArrowCol: "md:col-span-1 flex md:justify-end items-start",
+    certCredentialLink: "flex items-center justify-center shrink-0",
+    certLinkIcon: "w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform",
+    certStaticIcon: "w-5 h-5 text-muted-foreground",
+
+    lightbox: {
+        overlay: "fixed inset-0 bg-background/95 backdrop-blur-sm z-50",
+        content: "fixed inset-0 z-50 flex items-center justify-center p-6 md:p-16 outline-none",
+        close: "fixed top-6 right-6 z-[60] flex h-10 w-10 items-center justify-center border border-border bg-background text-muted-foreground hover:text-primary hover:border-primary transition-colors",
+        image: "max-h-full max-w-full object-contain border border-border",
+        srOnly: "sr-only",
+    },
+}

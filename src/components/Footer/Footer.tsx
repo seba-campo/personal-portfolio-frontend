@@ -8,13 +8,12 @@ export function Footer() {
                             SC
                         </span>
                         <span className="font-mono text-xs text-muted-foreground">
-                            &copy; 2025 Sebastián Campo
+                            &copy; 2026 Sebastián Campo
                         </span>
                     </div>
                     <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                        <span>Olivos, BA — AR</span>
+                        <span>CABA, BA — AR</span>
                         <span className="text-primary">/</span>
-                        <span>Built with Next.js</span>
                     </div>
                 </div>
             </div>
